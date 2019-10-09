@@ -1,6 +1,8 @@
-assets/*
-!assets/.gitignore
-protected/runtime/*
-!protected/runtime/.gitignore
-protected/data/*.db
-themes/classic/views/
+cms/assets/*
+!cms/assets/.gitkeep
+cms/admin/assets/*
+!cms/admin/assets/.gitkeep
+.idea
+cms/_protected/vendor
+*.log
+node_modules
