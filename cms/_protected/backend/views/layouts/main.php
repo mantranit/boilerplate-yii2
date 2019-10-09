@@ -139,12 +139,12 @@ if(!isset($role['admin'])) {
                                         'visible' => isset($role['admin']),
                                         'items' => [
                                             [
-                                                'label' => 'QL User',
+                                                'label' => 'Quản lý User',
                                                 'url' => ['user/index'],
                                                 'visible' => isset($role['admin'])
                                             ],
                                             [
-                                                'label' => 'QL Tags',
+                                                'label' => 'Quản lý Tags',
                                                 'url' => ['tag/index'],
                                                 'visible' => isset($role['admin'])
                                             ]
