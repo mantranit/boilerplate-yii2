@@ -26,7 +26,6 @@ FullAsset::register($this);
             <div class="navbar">
                 <a href="/" class="site_title"><i class="fa fa-paw"></i> &nbsp; <span>DUY TAN</span></a>
             </div>
-            <div class="clearfix"></div>
             <div class="content">
                 <?= $content ?>
             </div>
