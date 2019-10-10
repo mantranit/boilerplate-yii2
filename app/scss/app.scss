@@ -1,0 +1,54 @@
+/* By M Team */
+
+/* Core variables */
+@import 'base/vars';
+
+/* CSS Reset */
+@import 'base/reset';
+
+/* CSS print */
+@import 'base/print';
+
+/* Fonts */
+@import 'base/fonts';
+
+/* Mixins, helpers and functions */
+@import 'base/mixins';
+
+/* Vendor */
+
+/* Layout */
+body {
+  background: $body-background-color;
+  color: $foreground-color;
+  font-family: 'DINP-R', arial, serif;
+}
+
+.site-wrapper{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Modules */
+@import "modules/fancybox";
+@import "modules/watermask";
+@import "modules/page-builder";
+
+/* Partials */
+@import "partials/general";
+@import "partials/upload";
+@import "partials/tags";
+@import "partials/sortable";
+@import "partials/duplicated";
+@import "partials/dynatree";
+@import "partials/content";
+
+/* Components */
+@import "layout/bootstrap";
+@import "layout/header";
+@import "layout/footer";
+
+/* Demo styles */
+@import "sections/login";
+@import "sections/main";

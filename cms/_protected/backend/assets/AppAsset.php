@@ -28,13 +28,15 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@themes';
     
     public $css = [
-        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
-        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css',
+        'assets/css/app.css',
     ];
     public $js = [
+        'assets/js/app.js',
     ];
     
     public $depends = [
         'yii\web\YiiAsset',
+        'yii\bootstrap4\BootstrapAsset',
+        'rmrevin\yii\fontawesome\AssetBundle',
     ];
 }

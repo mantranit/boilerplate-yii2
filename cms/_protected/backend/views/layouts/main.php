@@ -1,17 +1,15 @@
 <?php
 use backend\assets\AppAsset;
 use yii\helpers\Html;
-// use yii\widgets\Menu;
+use yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
-use yiister\gentelella\assets\Asset;
-use yiister\gentelella\widgets\Menu;
+use yii\bootstrap4\Nav;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 AppAsset::register($this);
-Asset::register($this);
 
 $role = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
 if(!isset($role['admin'])) {
@@ -31,39 +29,49 @@ if(!isset($role['admin'])) {
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="nav-<?= !empty($_COOKIE['menuIsCollapsed']) && $_COOKIE['menuIsCollapsed'] == 'true' ? 'sm' : 'md' ?>" >
-<?php $this->beginBody(); ?>
-<div class="container body">
-
-    <div class="main_container">
-
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-
-                <div class="navbar nav_title">
-                    <a href="/" class="site_title"><i class="fa fa-paw"></i> &nbsp; <span>DUY TAN</span></a>
-                </div>
-                <div class="clearfix"></div>
-
-                <!-- menu prile quick info -->
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="<?= Yii::$app->view->theme->baseUrl ?>/images/user.png" alt="..." class="img-circle profile_img">
+<body>
+    <div class="site-wrapper">
+        <?php $this->beginBody() ?>
+        <div class="wrapper row">
+            <div class="large-12 columns content-bg">
+                <nav class="top-navigation" role="navigation">
+                    <div class="row">
+                        <div class="large-2 medium-4 small-12 columns top-part-no-padding">
+                            <div class="logo-bg">
+                                <img src="<?= Yii::$app->view->theme->baseUrl ?>/images/logo/jmgroup-white.png" alt="JM GROUP" />
+                                <a href="javascript:;" class="toggles" data-toggle="hide">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="large-10 medium-8 small-12 columns top-menu">
+                            <div class="row">
+                                <div class="large-6 medium-6 small-12 columns">
+                                    <div class="row">
+                                        <div class="large-8 columns top-search">
+                                            <input type="text" placeholder="Search" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="large-4 medium-6 small-12 columns">
+                                    <div class="row">
+                                        <div class="medium-9 small-9 columns howdy">
+                                            Chào, <?= Yii::$app->user->identity->username ?>
+                                        </div>
+                                        <div class="medium-3 small-3 columns logout">
+                                            <?= Html::a('<i class="fa fa-power-off"></i>', ['/site/logout'], ['data-method'=>'post']) ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
-                    <div class="profile_info">
-                        <span>ADMIN</span>
-                        <h2><?= Yii::$app->user->identity->full_name ? Yii::$app->user->identity->full_name : Yii::$app->user->identity->username ?></h2>
-                    </div>
-                </div>
-                <!-- /menu prile quick info -->
-
-                <br />
-
-                <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-
-                    <div class="menu_section">
-                        <?php
+                </nav>
+                <div class="row">
+                    <aside class="large-2 medium-12 small-12 columns">
+                        <nav class="main-nav row">
+                            <?php
                             echo Menu::widget([
                                 'items' => [
                                     [
@@ -139,12 +147,12 @@ if(!isset($role['admin'])) {
                                         'visible' => isset($role['admin']),
                                         'items' => [
                                             [
-                                                'label' => 'Quản lý User',
+                                                'label' => 'QL User',
                                                 'url' => ['user/index'],
                                                 'visible' => isset($role['admin'])
                                             ],
                                             [
-                                                'label' => 'Quản lý Tags',
+                                                'label' => 'QL Tags',
                                                 'url' => ['tag/index'],
                                                 'visible' => isset($role['admin'])
                                             ]
@@ -152,120 +160,64 @@ if(!isset($role['admin'])) {
                                     ],
                                 ],
                             ]);
-                        ?>
-                    </div>
-
-                </div>
-                <!-- /sidebar menu -->
-
-                <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <?= Html::a('<span class="glyphicon glyphicon-off" aria-hidden="true"></span>', ['/site/logout'], [
-                        'data-method'=>'post',
-                        'data-toggle'=>'tooltip',
-                        'data-placement'=>'top',
-                        'title'=>'Logout',
+                            ?>
+                        </nav>
+                    </aside>
+                    <main class="large-10 medium-12 small-12 columns container" role="main">
+                        <?= Breadcrumbs::widget([
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                            'options' => ['class' => 'breadcrumbs']
                         ]) ?>
+                        <?= $content ?>
+                    </main>
                 </div>
-                <!-- /menu footer buttons -->
             </div>
         </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-
-            <div class="nav_menu">
-                <nav class="" role="navigation">
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a href="javascript:void(0);" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="<?= Yii::$app->view->theme->baseUrl ?>/images/user.png" alt=""><?= Yii::$app->user->identity->full_name ? Yii::$app->user->identity->full_name : Yii::$app->user->identity->username ?>
-                                <span class=" fa fa-angle-down"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <!-- <li><a href="javascript:void(0);">Profile</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Help</a>
-                                </li> -->
-                                <li>
-                                    <?= Html::a('<i class="fa fa-sign-out pull-right"></i> Log Out', ['/site/logout'], [
-                                        'data-method'=>'post',
-                                        ]) ?>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </nav>
-            </div>
-
-        </div>
-        <!-- /top navigation -->
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <?php if (isset($this->params['h1'])): ?>
-                <div class="page-title">
-                    <div class="title_left">
-                        <h1><?= $this->params['h1'] ?></h1>
-                    </div>
-                    <div class="title_right">
-                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <div class="clearfix"></div>
-
-            <?= $content ?>
-        </div>
-        <!-- /page content -->
-        <!-- footer content -->
-        <footer>
-            <div class="pull-right">
-                2015 &copy; <?= Yii::$app->name ?>. Powered by <?= Html::a('Man Tran', 'http://www.mantran.net', ['rel'=>"nofollow", 'target' => '_blank']) ?>
-            </div>
-            <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+        <?php $this->endBody() ?>
     </div>
+    <div class="copyright">
+        2015 &copy; <?= Yii::$app->name ?>.<br/>Powered by <?= Html::a('Man Tran', 'http://www.mantran.net', ['target' => '_blank']) ?>
+    </div>
+    <?php
+    $this->registerJs("
+//        var goLockScreen = false;
+//        var stop = false;
+//        var autoLockTimer;
+//        window.onload = resetTimer;
+//        window.onmousemove = resetTimer;
+//        window.onmousedown = resetTimer; // catches touchscreen presses
+//        window.onclick = resetTimer;     // catches touchpad clicks
+//        window.onscroll = resetTimer;    // catches scrolling with arrow keys
+//        window.onkeypress = resetTimer;
+//
+//        function lockScreen() {
+//            stop = true;
+//            window.location.href = '" . Url::toRoute(['/site/lock-screen']) . "?previous='+encodeURIComponent(window.location.href);
+//        }
+//
+//        function lockIdentity(){
+//            goLockScreen = true;
+//        }
+//
+//        function resetTimer() {
+//            if(stop==true){
+//
+//            }
+//            else if (goLockScreen) {
+//                lockScreen();
+//            }
+//            else{
+//                clearTimeout(autoLockTimer);
+//                autoLockTimer = setTimeout(lockIdentity, " . (Yii::$app->session->timeout * 1000) . ");  // time is in milliseconds
+//            }
+//
+//        }
 
-</div>
+        // $(document).foundation();
+    ");
 
-<div id="custom_notifications" class="custom-notifications dsp_none">
-    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-    </ul>
-    <div class="clearfix"></div>
-    <div id="notif-group" class="tabbed_notifications"></div>
-</div>
-<!-- /footer content -->
-<?php $this->endBody(); ?>
+    ?>
 </body>
 </html>
 <?php $this->endPage() ?>

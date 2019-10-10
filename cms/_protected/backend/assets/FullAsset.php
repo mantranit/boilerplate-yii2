@@ -24,17 +24,13 @@ class FullAsset extends AssetBundle
     public $baseUrl = '@themes';
 
     public $css = [
-        'css/font-awesome.min.css',
-        'css/foundation.min.css',
-        'css/login.min.css',
-
+        // 'css/login.min.css',
     ];
     public $js = [
-        'js/vendor/foundation.min.js',
-
     ];
 
     public $depends = [
         'yii\web\YiiAsset',
+        'backend\assets\AppAsset',
     ];
 }

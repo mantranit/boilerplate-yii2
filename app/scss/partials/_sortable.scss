@@ -1,0 +1,102 @@
+.site-index {
+    .feature-products{
+        @include clearfix;
+        padding-bottom: 15px;
+    }
+    .related {
+        .connected {
+            height: 800px;
+            max-height: 800px;
+        }
+    }
+    .search {
+        .connected {
+            height: 645px;
+            max-height: 645px;
+        }
+    }
+}
+.related {
+    .connected {
+        height: 391px;
+        max-height: 391px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        li{
+            cursor: move;
+            &.sortable-placeholder {
+                border: 1px dashed #CCC;
+                background: none;
+                height: 147px;
+            }
+        }
+        img{
+            max-width: 100%;
+        }
+        a{
+            display: block;
+            margin: 5px 0 0;
+            font-size: 12px;
+            height: 40px;
+            overflow: hidden;
+        }
+    }
+}
+.search {
+    .search-box{
+        padding: 15px 5px 20px;
+        border-bottom: 1px solid #3598dc;
+        margin-bottom: 20px;
+    }
+    .connected {
+        height: 300px;
+        max-height: 300px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        li{
+            cursor: move;
+            &.sortable-placeholder {
+                border: 1px dashed #CCC;
+                background: none;
+                height: 37px;
+            }
+        }
+        img{
+            display: none;
+        }
+    }
+}
+
+.connected, .sortable, .exclude, .handles {
+    margin: auto;
+    padding: 0;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    user-select: none;
+    li{
+        list-style: none;
+        border: 1px solid #CCC;
+        background: #F6F6F6;
+        color: #1C94C4;
+        margin: 5px;
+        padding: 5px;
+    }
+}
+.handles span {
+  cursor: move;
+}
+.sortable.grid {
+    li {
+        float: left;
+        width: 30%;
+        text-align: center;
+    }
+}
+li {
+    &.highlight {
+        background: #FEE25F;
+    }
+    &.disabled {
+        opacity: 0.5;
+    }
+}

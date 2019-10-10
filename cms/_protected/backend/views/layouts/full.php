@@ -4,7 +4,6 @@ use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-
 FullAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -15,28 +14,25 @@ FullAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=latin-ext,vietnamese" rel="stylesheet">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-
-    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all">
-    <script src="<?= Yii::$app->view->theme->baseUrl ?>/js/vendor/modernizr.js"></script>
     <?php $this->head() ?>
 </head>
-<body>
+<body class="full">
+    <?php $this->beginBody() ?>
     <div class="site-wrapper">
-        <?php $this->beginBody() ?>
-
         <div class="wrapper">
+            <div class="navbar">
+                <a href="/" class="site_title"><i class="fa fa-paw"></i> &nbsp; <span>DUY TAN</span></a>
+            </div>
+            <div class="clearfix"></div>
             <div class="content">
                 <?= $content ?>
             </div>
-            <div class="copyright">
-                2015 &copy; <?= Yii::$app->name ?>. Powered by <?= Html::a('Man Tran', 'http://www.mantrantd.com', ['target' => '_blank']) ?>
-            </div>
         </div>
-
-        <?php $this->endBody() ?>
     </div>
+    <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
