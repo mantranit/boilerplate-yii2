@@ -56,12 +56,20 @@ if(!isset($role['admin'])) {
             ?>
         </header>
         <aside class="floating-menu">
-
+            <div class="profile">
+                <img src="" alt="" />
+            </div>
             <nav class="main-nav">
                 <?php
                 echo Nav::widget([
                     'encodeLabels' => false,
                     'items' => [
+                        [
+                            'label' => 'GENERAL',
+                            'url' => '#',
+                            'options' => ['disabled' => 'disabled'],
+                            'visible' => isset($role['admin'])
+                        ],
                         [
                             'label' => '<i class="fa fa-home"></i> Tổng quan',
                             'url' => ['site/index'],
@@ -122,26 +130,35 @@ if(!isset($role['admin'])) {
                             ]
                         ],
                         [
-                            'label' => '<i class="fa fa-users"></i> Admin',
+                            'label' => 'ADMIN',
                             'url' => '#',
-                            'visible' => isset($role['admin']),
-                            'items' => [
-                                [
-                                    'label' => 'Quản lý User',
-                                    'url' => ['user/index'],
-                                    'visible' => isset($role['admin'])
-                                ],
-                                [
-                                    'label' => 'Quản lý Tags',
-                                    'url' => ['tag/index'],
-                                    'visible' => isset($role['admin'])
-                                ]
-                            ]
+                            'options' => ['disabled' => 'disabled'],
+                            'visible' => isset($role['admin'])
                         ],
+                        [
+                            'label' => '<i class="fa fa-user"></i> Quản lý User',
+                            'url' => ['user/index'],
+                            'visible' => isset($role['admin'])
+                        ],
+                        [
+                            'label' => '<i class="fa fa-tag"></i> Quản lý Tags',
+                            'url' => ['tag/index'],
+                            'visible' => isset($role['admin'])
+                        ]
                     ],
                 ]);
                 ?>
             </nav>
+            <div class="system-ctas">
+                <?php 
+                echo Html::beginForm(['/site/logout'], 'post');
+                echo Html::submitButton(
+                    '<i class="fa fa-power-off" aria-hidden="true"></i>',
+                    ['class' => 'btn btn-link logout']
+                );
+                echo Html::endForm();
+                ?>
+            </div>
         </aside>
         <div class="wrapper">
             <main class="large-10 medium-12 small-12 columns container" role="main">
@@ -189,7 +206,8 @@ if(!isset($role['admin'])) {
 //
 //        }
 
-        // $(document).foundation();
+        const childActive = $('.floating-menu .dropdown-item.active');
+        childActive.parent().addClass('show').parent().addClass('show');
     ");
     ?>
 </body>

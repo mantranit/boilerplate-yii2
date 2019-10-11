@@ -1034,7 +1034,7 @@ span.dynatree-drop-target.dynatree-drop-reject {
   .navbar .container {
     padding: 0; }
   .navbar .navbar-brand {
-    width: 275px;
+    width: 260px;
     padding: 16px 20px;
     color: white !important;
     background-color: #1b4460;
@@ -1053,7 +1053,7 @@ span.dynatree-drop-target.dynatree-drop-reject {
   top: 0;
   left: 0;
   height: 100vh;
-  width: 275px;
+  width: 260px;
   background-color: #1b4460;
   z-index: 1;
   padding-top: 60px;
@@ -1066,13 +1066,18 @@ span.dynatree-drop-target.dynatree-drop-reject {
         font-weight: bold; }
       .floating-menu .nav-item.show .dropdown-toggle:after {
         display: none; }
+    .floating-menu .nav-item[disabled] a {
+      color: #b09c61;
+      font-weight: bold;
+      padding-bottom: 1px;
+      font-size: 12px; }
   .floating-menu .nav-link {
     color: #c5d9e8;
-    padding-top: 12px;
-    padding-bottom: 12px; }
+    padding-top: 10px;
+    padding-bottom: 10px; }
     .floating-menu .nav-link i {
       font-size: 12px;
-      margin-right: 8px; }
+      margin-right: 10px; }
     .floating-menu .nav-link:hover {
       color: #43a5ed; }
     .floating-menu .nav-link.active {
@@ -1097,7 +1102,7 @@ span.dynatree-drop-target.dynatree-drop-reject {
     padding-bottom: 15px; }
     .floating-menu .dropdown-menu .dropdown-item {
       color: #c5d9e8 !important;
-      padding: 5px 5px 5px 40px;
+      padding: 4px 4px 4px 44px;
       background-color: transparent !important; }
       .floating-menu .dropdown-menu .dropdown-item:before {
         content: '';
@@ -1106,7 +1111,7 @@ span.dynatree-drop-target.dynatree-drop-reject {
         height: 5px;
         border-radius: 100%;
         background-color: #43a5ed;
-        margin-right: 8px;
+        margin-right: 10px;
         -webkit-transform: translate(0, -3px);
                 transform: translate(0, -3px);
         visibility: hidden; }
@@ -1120,7 +1125,20 @@ span.dynatree-drop-target.dynatree-drop-reject {
           visibility: visible; }
 
 .wrapper {
-  padding-left: 275px; }
+  padding-left: 260px;
+  padding-top: 58px; }
+
+.system-ctas {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #193c57;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .system-ctas button {
+    color: #c5d9e8; }
 
 /* Demo styles */
 .full {
@@ -1138,7 +1156,7 @@ span.dynatree-drop-target.dynatree-drop-reject {
         letter-spacing: 3px;
         font-weight: bold; }
   .full .wrapper {
-    padding-left: 0; }
+    padding: 0; }
   .full .site-wrapper {
     display: flex;
     align-items: center;
