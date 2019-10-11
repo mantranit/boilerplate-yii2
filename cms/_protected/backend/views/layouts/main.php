@@ -60,17 +60,16 @@ if(!isset($role['admin'])) {
             <nav class="main-nav">
                 <?php
                 echo Nav::widget([
+                    'encodeLabels' => false,
                     'items' => [
                         [
-                            'label' => 'Tổng quan',
+                            'label' => '<i class="fa fa-home"></i> Tổng quan',
                             'url' => ['site/index'],
-                            'icon' => 'home',
                             'visible' => isset($role['admin'])
                         ],
                         [
-                            'label' => 'Quản lý sản phẩm',
+                            'label' => '<i class="fa fa-archive"></i> Quản lý sản phẩm',
                             'url' => '#',
-                            'icon' => 'shopping-bag',
                             'visible' => isset($role['admin']),
                             'items' => [
                                 [
@@ -86,33 +85,28 @@ if(!isset($role['admin'])) {
                             ]
                         ],
                         [
-                            'label' => 'Danh sách bài viết',
+                            'label' => '<i class="fa fa-th-list"></i> Danh sách bài viết',
                             'url' => ['news/index'],
-                            'icon' => 'th-list',
                             'visible' => isset($role['admin'])
                         ],
                         [
-                            'label' => 'Quản lý Slide',
+                            'label' => '<i class="fa fa-th-large"></i> Quản lý Slide',
                             'url' => ['slider/index'],
-                            'icon' => 'th-large',
                             'visible' => isset($role['admin'])
                         ],
                         [
-                            'label' => 'Quản lý Banner',
+                            'label' => '<i class="fa fa-film"></i> Quản lý Banner',
                             'url' => ['banner/index'],
-                            'icon' => 'film',
                             'visible' => isset($role['admin'])
                         ],
                         [
-                            'label' => 'Danh sách trang',
+                            'label' => '<i class="fa fa-file"></i> Danh sách trang',
                             'url' => ['page/index'],
-                            'icon' => 'file',
                             'visible' => isset($role['admin'])
                         ],
                         [
-                            'label' => 'Cấu hình',
+                            'label' => '<i class="fa fa-gear"></i> Cấu hình',
                             'url' => '#',
-                            'icon' => 'gear',
                             'visible' => isset($role['admin']),
                             'items' => [
                                 [
@@ -128,9 +122,8 @@ if(!isset($role['admin'])) {
                             ]
                         ],
                         [
-                            'label' => 'Admin',
+                            'label' => '<i class="fa fa-users"></i> Admin',
                             'url' => '#',
-                            'icon' => 'users',
                             'visible' => isset($role['admin']),
                             'items' => [
                                 [
