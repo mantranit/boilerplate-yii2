@@ -105,19 +105,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scs
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./BaseModule\": \"./app/js/modules/BaseModule.js\",\n\t\"./BaseModule.js\": \"./app/js/modules/BaseModule.js\",\n\t\"./ToggleClass\": \"./app/js/modules/ToggleClass.js\",\n\t\"./ToggleClass.js\": \"./app/js/modules/ToggleClass.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./app/js/modules sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack:///./app/js/modules_sync_^\\.\\/.*$?");
+eval("var map = {\n\t\"./Support\": \"./app/js/modules/Support.js\",\n\t\"./Support.js\": \"./app/js/modules/Support.js\",\n\t\"./ToggleClass\": \"./app/js/modules/ToggleClass.js\",\n\t\"./ToggleClass.js\": \"./app/js/modules/ToggleClass.js\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./app/js/modules sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack:///./app/js/modules_sync_^\\.\\/.*$?");
 
 /***/ }),
 
-/***/ "./app/js/modules/BaseModule.js":
-/*!**************************************!*\
-  !*** ./app/js/modules/BaseModule.js ***!
-  \**************************************/
+/***/ "./app/js/modules/Support.js":
+/*!***********************************!*\
+  !*** ./app/js/modules/Support.js ***!
+  \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return BaseModule; });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar BaseModule = function BaseModule(el) {\n  _classCallCheck(this, BaseModule);\n\n  this.el = el;\n  this.el.handler = this.el.handler || {};\n  console.log(el);\n};\n\n\n\n//# sourceURL=webpack:///./app/js/modules/BaseModule.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Support; });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar Support = function Support(el) {\n  _classCallCheck(this, Support);\n\n  this.el = el;\n  this.el.handler = this.el.handler || {};\n  console.log(el);\n};\n\n\n\n//# sourceURL=webpack:///./app/js/modules/Support.js?");
 
 /***/ }),
 

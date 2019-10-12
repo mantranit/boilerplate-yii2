@@ -16,32 +16,40 @@ $(function(){
         $('.add-support').on('click', function () {
             var children = support.find('li');
             var index = children.length;
+            children.each(function(i, e) {
+                var idx = $(this).data('index');
+                if(index <= idx) {
+                    index = idx + 1;
+                }
+            });
+
             support.append(
                 '<li class="contact contact-item-' + index + '" data-index="' + index + '" draggable="true">' +
-                '<div class="row">' +
-                '<div class="form-group columns small-6">' +
-                '<label class="control-label">Type</label>' +
-                '<select class="form-control" name="Support[' + index + '][type]">' +
-                '<option value="yahoo" selected="">Yahoo</option>' +
-                '<option value="skype">Skype</option>' +
-                '</select>' +
-                '</div>' +
-                '<div class="form-group columns small-6">' +
-                '<label class="control-label">Name</label>' +
-                '<input type="text" class="form-control" name="Support[' + index + '][name]">' +
-                '</div>' +
-                '<div class="form-group columns small-6">' +
-                '<label class="control-label">Nickname</label>' +
-                '<input type="text" class="form-control" name="Support[' + index + '][nickname]">' +
-                '</div>' +
-                '<div class="form-group columns small-5">' +
-                '<label class="control-label">Phone</label>' +
-                '<input type="text" class="form-control" name="Support[' + index + '][phone]">' +
-                '</div>' +
-                '<div class="form-group columns small-1">' +
-                '<a class="remove-suport">x</a>' +
-                '</div>' +
-                '</div>' +
+                    '<div class="row">' +
+                        '<div class="col-2"><div class="form-group">' +
+                            '<label class="control-label">Type</label>' +
+                            '<select class="form-control" name="Support[' + index + '][type]">' +
+                                '<option value="yahoo" selected="">Yahoo</option>' +
+                                '<option value="skype">Skype</option>' +
+                            '</select>' +
+                        '</div></div>' +
+                        '<div class="col-3"><div class="form-group">' +
+                            '<label class="control-label">Name</label>' +
+                            '<input type="text" class="form-control" name="Support[' + index + '][name]">' +
+                        '</div></div>' +
+                        '<div class="col-3"><div class="form-group">' +
+                            '<label class="control-label">Nickname</label>' +
+                            '<input type="text" class="form-control" name="Support[' + index + '][nickname]">' +
+                        '</div></div>' +
+                        '<div class="col-3"><div class="form-group">' +
+                            '<label class="control-label">Phone</label>' +
+                            '<input type="text" class="form-control" name="Support[' + index + '][phone]">' +
+                        '</div></div>' +
+                        '<div class="col-1"><div class="form-group">' +
+                            '<label style="display: block">&nbsp;</label>' +
+                            '<a class="remove-suport" href="javascript:void(0);"><i class="fa fa-trash-o"></i></a>' +
+                        '</div></div>' +
+                    '</div>' +
                 '</li>'
             );
             support.sortable('destroy');

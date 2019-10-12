@@ -1,11 +1,10 @@
 <?php
 use backend\assets\AppAsset;
 use yii\helpers\Html;
-use yii\widgets\Menu;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Nav;
+use yii\bootstrap4\Breadcrumbs;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -25,7 +24,7 @@ if(!isset($role['admin'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=latin-ext,vietnamese" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap&subset=latin-ext,vietnamese" rel="stylesheet">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -35,7 +34,7 @@ if(!isset($role['admin'])) {
     <div class="site-wrapper">
         <header class="site-header">
             <?php
-                NavBar::begin(['brandLabel' => '<i class="fa fa-paw"></i> &nbsp; <span>DUY TAN</span>']);
+                NavBar::begin(['brandLabel' => '<i class="fa fa-paw"></i> &nbsp; <span>' . Yii::$app->name . '</span>']);
                 echo Nav::widget([
                     'items' => [
                         [
@@ -43,7 +42,7 @@ if(!isset($role['admin'])) {
                             'url' => '#',
                             'items' => [
                                 [
-                                    'label' => 'Đăng xuất',
+                                    'label' => 'Đăng xuất ',
                                     'url' => ['/site/logout'],
                                     'linkOptions' => ['data-method'=>'post'],
                                 ],
@@ -150,7 +149,8 @@ if(!isset($role['admin'])) {
                 ?>
             </nav>
             <div class="system-ctas">
-                <?php 
+                <?= Html::a('&copy Man Tran', 'https://www.mantran.net', ['target' => '_blank']) ?>
+                <?php
                 echo Html::beginForm(['/site/logout'], 'post');
                 echo Html::submitButton(
                     '<i class="fa fa-power-off" aria-hidden="true"></i>',
@@ -160,15 +160,9 @@ if(!isset($role['admin'])) {
                 ?>
             </div>
         </aside>
-        <div class="wrapper">
-            <main class="large-10 medium-12 small-12 columns container" role="main">
-                <?= Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    'options' => ['class' => 'breadcrumbs']
-                ]) ?>
-                <?= $content ?>
-            </main>
-        </div>
+        <main class="site-main" role="main">
+            <?= $content ?>
+        </main>
     </div>
 <?php $this->endBody() ?>
 <?php

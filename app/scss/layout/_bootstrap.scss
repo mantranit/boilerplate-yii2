@@ -1,8 +1,24 @@
 .btn-primary {
-    background-color: #43a5ed;
-    border-color: #43a5ed;
+    background-color: $color-primary;
+    border-color: $color-primary;
     &:hover{
-        background-color: #2e73a5;
-        border-color: #2e73a5;
+        background-color: $color-primary-hover;
+        border-color: $color-primary-hover;
     }
+}
+.btn-link{
+    color: $color-primary;
+    &:hover{
+        color: $color-primary-hover;
+    }
+}
+a{
+    color: $color-primary;
+    &:hover {
+        text-decoration: none;
+        color: $color-primary-hover;
+    }
+}
+.container {
+    max-width: none;
 }

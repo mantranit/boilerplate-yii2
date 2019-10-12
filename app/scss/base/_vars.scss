@@ -3,6 +3,8 @@
 */
 
 /* Typography */
+$font-roboto-condensed: 'Roboto Condensed', sans-serif;
+$font-roboto: 'Roboto', sans-serif;
 /* Breakpoints */
 /* Paths */
 /* Grid setup */
@@ -10,9 +12,16 @@
 $black: #000;
 $white: #fff;
 $color-primary: #43a5ed;
+$color-primary-hover: #2e73a5;
+$color-footer: #193c57;
 
-$body-background-color: #f1f1f1;
-$foreground-color: #fff;
+$body-background-color: #f9f9f9;
+$foreground-color: #000;
 $caption-color: #000;
 
 /* Components */
+$menu-width: 260px;
+$menu-top-height: 58px;
+$color-item: #c5d9e8;
+$color-active: #43a5ed;
+$color-show: #153044;

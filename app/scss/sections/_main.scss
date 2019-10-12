@@ -1,97 +1,47 @@
-.container {
-    max-width: none;
-}
 
-.side-nav {
-    padding: 0 0 15px;
-    background: #fff;
-    margin: 0.9375rem 0 0.9375rem 0.9375rem;
-    border-radius: 5px;
-    .group-item {
-        color: #0171B8;
-        text-transform: uppercase;
-        font-weight: 600;
-        padding: 20px 0 0 15px;
-    }
-    li {
-        a:not(.button) {
-            line-height: 30px;
-            color: #333;
-        }
-        &.active > a:not(.button) {
-            border-left: 3px solid #0171B8;
-            margin-left: -3px;
-            background: #f2f6f9;
-        }
-        i{
-            margin-right: 8px;
-            font-size: 16px;
-        }
-        ul{
-            margin: 0;
-            list-style: none;
-            li{
-                margin: 0;
-                a{
-                    border-left: none !important;
-                    margin: 2px 0 0 !important;
-                    padding: 3px 0 3px 38px !important;
-                    &:hover {
-                        text-decoration: underline;
-                        color: #333 !important;
-                    }
-                }
-            }
-        }
-    }
+h2{
+    font-size: 23px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: $color-primary;
+    margin: 20px 20px 10px;
+    letter-spacing: 1px;
 }
 .portlet{
-    padding: 12px 20px 15px;
-    background: #fff;
-    border-radius: 5px;
-    margin-top: 15px;
+    background-color: #fff;
+    margin: 10px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(#ccc, 0.5);
+    overflow: hidden;
     .portlet-title{
-        border-bottom: 1px solid #eee;
-        min-height: 44px;
-        .caption{
-            float: right;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 0 1px rgba(#ccc, 0.7);
+        h4{
             font-size: 18px;
-            line-height: 32px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #0171B8;
+            padding: 0 15px;
+            margin: 0;
+            color: $color-primary;
         }
-        .action{
-            float: left;
-            a{
-                margin: 0 10px 10px 0;
+        .actions{
+            justify-items: flex-end;
+        }
+        [aria-expanded="false"] {
+            i:before{
+                content: "\f065";
             }
         }
     }
     .portlet-body {
-        .has-padding {
-            padding-top: 15px;
+        padding: 15px;
+        .action-buttons{
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 15px;
         }
-        .has-padding-full {
-            padding: 15px;
-        }
-    }
-    &.small{
-        border: 1px solid #0171B8;
-        padding: 0;
-        .portlet-title{
-            background: #3598dc;
-            min-height: initial;
-            .caption{
-                color: #fff;
-                font-size: 14px;
-                padding: 2px 10px;
-                i{
-                    margin-right: 5px;
-                }
-            }
-        }
-
     }
 }
 .table {
@@ -137,26 +87,26 @@
 .summary{
     font-size: 13px;
 }
-.form-group{
-    margin-bottom: 15px;
-    position: relative;
-    &.has-error{
-        .form-control{
-            border-color: red;
-        }
-    }
-    .control-label{
-        margin-bottom: 3px;
-    }
-    .help-block{
-        color: red;
-        font-size: 12px;
-        margin: 5px 0 0;
-        &:empty{
-            display: none;
-        }
-    }
-}
+//.form-group{
+//    margin-bottom: 15px;
+//    position: relative;
+//    &.has-error{
+//        .form-control{
+//            border-color: red;
+//        }
+//    }
+//    .control-label{
+//        margin-bottom: 3px;
+//    }
+//    .help-block{
+//        color: red;
+//        font-size: 12px;
+//        margin: 5px 0 0;
+//        &:empty{
+//            display: none;
+//        }
+//    }
+//}
 #gallery-application{
     overflow: auto;
     padding: 10px 0;

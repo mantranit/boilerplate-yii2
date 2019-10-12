@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "autoprefixer": "^9.6.0",
-    "normalize-css": "^2.3.1"
+    "normalize-css": "^2.3.1",
+    "sortablejs": "^1.10.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
