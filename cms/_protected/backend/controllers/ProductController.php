@@ -334,7 +334,7 @@ class ProductController extends BackendController
                     ]
                 ]);
             }
-            
+
             if($model->status === Product::STATUS_DRAFT && !$model->updated_date) {
                 $model->name = '';
                 $model->slug = '';

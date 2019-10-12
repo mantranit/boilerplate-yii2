@@ -1,11 +1,13 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use common\helpers\UtilHelper;
 use yii\widgets\Pjax;
 use common\models\Category;
+use yii\bootstrap4\Modal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ProductSearch */
@@ -15,16 +17,28 @@ $this->title = 'Quản lý sản phẩm';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="product-index">
+
+    <h2>Danh sách sản phẩm</h2>
     <div class="portlet">
         <div class="portlet-title">
-            <div class="caption">Danh sách sản phẩm</div>
-            <div class="action">
-                <ul class="button-group">
-                    <li><?= Html::a('Thêm sản phẩm', ['create'], ['class' => 'tiny button round', 'data' => ['reveal-id' => 'create']]) ?></li>
-                </ul>
+            <h4>&nbsp;</h4>
+            <div class="actions">
+                <?php
+                    Modal::begin([
+                        'title' => 'Tạo mới',
+                        'toggleButton' => [
+                            'label' => '<i class="fa fa-plus"></i>',
+                            'class' => 'btn btn-lg btn-link'
+                        ],
+                    ]);
+                ?>
+                <?= $this->render('_popup') ?>
+                <?php Modal::end(); ?>
+
+                <button type="button" class="btn btn-lg btn-link" data-toggle="collapse" data-target="#listProduct" aria-expanded="true"><i class="fa fa-compress"></i></button>
             </div>
         </div>
-        <div class="portlet-body has-padding">
+        <div class="portlet-body collapse show" id="listProduct">
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
             <?php Pjax::begin(['id' => 'products']) ?>
             <?= GridView::widget([
@@ -108,5 +122,3 @@ $('#products').on('click', '.active', function(e){
 });
 ");
 ?>
-
-<?= $this->render('_popup') ?>
