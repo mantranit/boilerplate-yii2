@@ -200,8 +200,18 @@ if(!isset($role['admin'])) {
 //
 //        }
 
-        const childActive = $('.floating-menu .dropdown-item.active');
+        let childActive = $('.floating-menu .dropdown-item.active');
         childActive.parent().addClass('show').parent().addClass('show');
+        
+        const path = window.location.pathname;
+        if(path.lastIndexOf('update') >= 0 || path.lastIndexOf('create') >= 0) {
+            let tmp = path.split('/');
+            let active = $('.floating-menu a[href=\"/admin/'+tmp[2]+'/index\"]');
+            active.addClass('active');
+            if(active.hasClass('dropdown-item')) {
+                active.parent().addClass('show').parent().addClass('show');
+            }
+        }
     ");
     ?>
 </body>
