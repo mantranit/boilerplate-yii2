@@ -72,10 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute'=>'created_date',
-                        'format'=>'html',
-                        'value'=> function($data) {
-                            return date('d/m/Y', $data->created_date);
-                        }
+                        'format'=>['date', 'php: d/m/Y'],
                     ],
                     [
                         'attribute' => 'status',
