@@ -91,7 +91,7 @@ class Product extends \yii\db\ActiveRecord
             'seo_description' => Yii::t('app', 'Seo Description'),
             'published_date' => Yii::t('app', 'Published Date'),
             'updated_date' => Yii::t('app', 'Updated Date'),
-            'created_date' => Yii::t('app', 'Created Date'),
+            'created_date' => Yii::t('app', 'Ngày tạo'),
             'created_by' => Yii::t('app', 'Created By'),
             'activated' => Yii::t('app', 'Activated'),
             'deleted' => Yii::t('app', 'Deleted'),

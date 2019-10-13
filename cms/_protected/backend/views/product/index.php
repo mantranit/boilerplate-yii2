@@ -71,6 +71,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     [
+                        'attribute'=>'created_date',
+                        'format'=>'html',
+                        'value'=> function($data) {
+                            return date('d/m/Y', $data->created_date);
+                        }
+                    ],
+                    [
                         'attribute' => 'status',
                         'filter' => $searchModel->getStatusList(),
                         'value' => function($data) {
