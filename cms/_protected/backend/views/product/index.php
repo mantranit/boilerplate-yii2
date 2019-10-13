@@ -41,11 +41,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="portlet-body collapse show" id="listProduct">
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
             <div class="row">
-            <?php Pjax::begin(['id' => 'products', 'options' => ['class' => 'w-100']]) ?>
+            <?php Pjax::begin([
+                    'id' => 'products',
+                'options' => ['class' => 'w-100'],
+            ]) ?>
             <?= GridView::widget([
                 'tableOptions' => ['class' => 'table table-striped table-borderless table-hover'],
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $searchModel,
+                'layout' => '{items}<div class="controls">{pager}{summary}</div>',
+                'pager' => [
+                        'class' => 'yii\bootstrap4\LinkPager',
+                ],
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
@@ -77,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a('', ['active', 'id' => $data->id],
                                 [
                                     'class' => intval($data->activated) === 1 ? 'active fa fa-toggle-on' : 'active fa fa-toggle-off',
-                                    'title' => 'Show in menu',
+                                    'title' => 'Publish',
                                     'data' => [
                                         'confirm' => "Are you sure you want to change state this category?",
                                         'method'=>"post"
@@ -88,7 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // buttons
                     ['class' => 'yii\grid\ActionColumn',
                         'header' => "Menu",
-                        'template' => '{preview} {update} {delete}',
+                        'template' => '{preview} &nbsp; {update} &nbsp; {delete}',
                         'buttons' => [
                             'preview' => function ($url, $model, $key) {
                                 return Html::a(

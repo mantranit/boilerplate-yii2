@@ -1043,6 +1043,11 @@ a {
 .table-hover tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.03); }
 
+.page-item {
+  color: #43a5ed; }
+  .page-item.active .page-link {
+    background-color: #43a5ed; }
+
 .site-header {
   position: fixed;
   top: 0;
@@ -1298,9 +1303,16 @@ h2 {
       align-items: center;
       padding: 0 15px; }
 
-.grid-view .summary {
-  padding: 15px;
-  font-size: 13px; }
+.grid-view .controls {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  color: #43a5ed; }
+
+.grid-view .pagination {
+  margin: 0; }
 
 .table th {
   color: #43a5ed;

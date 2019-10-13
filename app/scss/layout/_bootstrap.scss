@@ -52,3 +52,9 @@ a{
 .table-hover tbody tr:hover{
     background-color: rgba(#000, 0.03);
 }
+.page-item {
+    color: $color-primary;
+    &.active .page-link {
+        background-color: $color-primary;
+    }
+}
