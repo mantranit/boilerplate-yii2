@@ -389,24 +389,8 @@ h1, h2, h3, h4, h5, h6 {
 .cke_reset_all textarea, .cke_reset_all input[type="text"], .cke_reset_all input[type="password"] {
   height: auto; }
 
-.product-search {
-  padding-top: 20px; }
-  .product-search::after {
-    clear: both;
-    content: '';
-    display: table; }
-  .product-search label {
-    display: none; }
-  .product-search input {
-    width: 300px; }
-  .product-search select {
-    width: 200px; }
-  .product-search button {
-    padding: 8px 20px;
-    color: #fff; }
-  .product-search .form-group {
-    float: left;
-    margin-right: 10px; }
+.form-no-label .control-label {
+  display: none; }
 
 .view-thumbnail [class*=column] + [class*=column]:last-child {
   float: left; }
@@ -1034,6 +1018,31 @@ a {
 .container {
   max-width: none; }
 
+.modal-content {
+  border-radius: 10px; }
+
+.modal-header {
+  padding: 10px 15px;
+  color: #43a5ed; }
+  .modal-header h5 {
+    font-size: 18px; }
+  .modal-header .close {
+    color: #43a5ed;
+    opacity: 1;
+    padding: 10px 15px;
+    margin: -8px -15px -10px auto; }
+    .modal-header .close:hover {
+      color: #2e73a5; }
+
+.table-striped thead {
+  background-color: #e9ecef; }
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.02); }
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.03); }
+
 .site-header {
   position: fixed;
   top: 0;
@@ -1289,35 +1298,20 @@ h2 {
       align-items: center;
       padding: 0 15px; }
 
-.table {
-  width: 100%; }
-  .table tr th {
-    font-weight: 500;
-    color: #008CBA; }
-    .table tr th .asc:after, .table tr th .desc:after {
-      color: #0171B8;
-      font-family: FontAwesome;
-      margin-left: 5px; }
-    .table tr th .asc:after {
-      content: "\f106"; }
-    .table tr th .desc:after {
-      content: "\f107"; }
-  .table tr td {
-    vertical-align: top; }
-  .table .fa {
-    font-size: 16px;
-    margin: 0 5px; }
-    .table .fa.fa-eye {
-      color: #a0d3e8; }
-    .table .fa.fa-pencil-square-o {
-      color: #008CBA; }
-    .table .fa.fa-trash-o {
-      color: #e7e7e7; }
-  .table input[type='number'] {
-    width: 60px; }
-
-.summary {
+.grid-view .summary {
+  padding: 15px;
   font-size: 13px; }
+
+.table th {
+  color: #43a5ed;
+  font-weight: 500; }
+  .table th .asc:after, .table th .desc:after {
+    font-family: FontAwesome;
+    margin-left: 5px; }
+  .table th .asc:after {
+    content: "\f106"; }
+  .table th .desc:after {
+    content: "\f107"; }
 
 #gallery-application {
   overflow: auto;

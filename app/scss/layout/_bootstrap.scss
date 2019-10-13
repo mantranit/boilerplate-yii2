@@ -22,3 +22,33 @@ a{
 .container {
     max-width: none;
 }
+.modal-content{
+    border-radius: 10px;
+}
+.modal-header{
+    padding: 10px 15px;
+    color: $color-primary;
+    h5{
+        font-size: 18px;
+    }
+    .close{
+        color: $color-primary;
+        opacity: 1;
+        padding: 10px 15px;
+        margin: -8px -15px -10px auto;
+        &:hover{
+            color: $color-primary-hover;
+        }
+    }
+}
+.table-striped {
+    thead{
+        background-color: #e9ecef;
+    }
+    tbody tr:nth-of-type(odd) {
+        background-color: rgba(#000, 0.02);
+    }
+}
+.table-hover tbody tr:hover{
+    background-color: rgba(#000, 0.03);
+}

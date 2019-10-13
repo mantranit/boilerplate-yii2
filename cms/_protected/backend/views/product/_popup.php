@@ -12,11 +12,10 @@ use yii\helpers\Url;
 
 <form action="<?= Url::toRoute(['create']) ?>">
     <div class="form-group">
-        <label>Tên sản phẩm</label>
-        <input type="text" name="name" />
+        <input type="text" name="name" class="form-control" placeholder="Tên sản phẩm" />
     </div>
     <div class="action-buttons">
-        <button class="small radius">Tạo mới</button>
+        <button class="btn btn-success">Tạo mới</button>
     </div>
 </form>
 

@@ -80,6 +80,7 @@ class ProductController extends BackendController
         $model->status = Product::STATUS_DRAFT;
         $model->created_date = time();
         $model->created_by = Yii::$app->user->identity->username;
+        $model->price_string = '';
 
         if($model->save()) {
             return $this->redirect(['update', 'id' => $model->id]);
@@ -336,7 +337,6 @@ class ProductController extends BackendController
             }
 
             if($model->status === Product::STATUS_DRAFT && !$model->updated_date) {
-                $model->name = '';
                 $model->slug = '';
             }
 

@@ -60,6 +60,13 @@ class ProductSearch extends Product
             $this->status = Product::STATUS_INSTOCK;
         }
 
+        if(isset($params['sort'])) {
+            if($params['sort'][0] === '-') {
+                $query->orderBy(trim($params['sort'], '-') . ' DESC');
+            } else {
+                $query->orderBy($params['sort'] . ' ASC');
+            }
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -69,7 +76,7 @@ class ProductSearch extends Product
         ]);
 
         $this->load($params);
-//die('sdfds');
+
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');

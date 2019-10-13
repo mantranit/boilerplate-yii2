@@ -44,49 +44,31 @@ h2{
         }
     }
 }
-.table {
-    width: 100%;
-    tr {
-        th {
-            font-weight: 500;
-            color: #008CBA;
-            .asc:after, .desc:after {
-                color: #0171B8;
+.grid-view{
+    .summary{
+        padding: 15px;
+        font-size: 13px;
+    }
+}
+.table{
+    th{
+        color: $color-primary;
+        font-weight: 500;
+        .asc, .desc {
+            &:after {
                 font-family: FontAwesome;
                 margin-left: 5px;
             }
-            .asc:after {
-                content: "\f106";
-            }
-            .desc:after {
-                content: "\f107";
-            }
         }
-        td{
-            vertical-align: top;
+        .asc:after {
+            content: "\f106";
+        }
+        .desc:after {
+            content: "\f107";
+        }
+    }
+}
 
-        }
-    }
-    .fa{
-        font-size: 16px;
-        margin: 0 5px;
-        &.fa-eye{
-            color: #a0d3e8;
-        }
-        &.fa-pencil-square-o{
-            color: #008CBA;
-        }
-        &.fa-trash-o{
-            color: #e7e7e7;
-        }
-    }
-    input[type='number']{
-        width: 60px;
-    }
-}
-.summary{
-    font-size: 13px;
-}
 //.form-group{
 //    margin-bottom: 15px;
 //    position: relative;
