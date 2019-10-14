@@ -58,3 +58,15 @@ a{
         background-color: $color-primary;
     }
 }
+.nav-tabs .nav-link{
+    font-size: 18px;
+}
+.text-core .text-wrap .text-tags{
+    top: 0;
+    left: 0;
+}
+.text-core .text-wrap,
+.text-core .text-wrap textarea, 
+.text-core .text-wrap input{
+    width: 100% !important;
+}

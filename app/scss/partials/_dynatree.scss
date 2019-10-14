@@ -4,10 +4,8 @@
 ul.dynatree-container
 {
     white-space: nowrap;
-    padding: 3px;
+    padding: 0;
     margin: 0; /* issue 201 */
-    background-color: white;
-    border: 1px dotted gray;
     overflow: auto;
     /*	height: 100%; /* issue 263, 470 */
     min-height: 0%;

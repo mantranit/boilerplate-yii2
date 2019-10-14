@@ -24,7 +24,9 @@ class ProductAsset extends AssetBundle
     public $baseUrl = '@themes';
 
     public $css = [
-
+        'textext/css/textext.core.css',
+        'textext/css/textext.plugin.autocomplete.css',
+        'textext/css/textext.plugin.tags.css',
     ];
     public $js = [
         'plupload/plupload.full.min.js',
@@ -37,7 +39,13 @@ class ProductAsset extends AssetBundle
         'js/vendor/jquery.dynatree.min.js',
         'js/vendor/jquery.maskMoney.min.js',
         'js/vendor/jquery.fancybox.pack.js',
-        'js/global.min.js'
+        // 'js/global.min.js',
+        'js/app/currency.js',
+        'js/app/dynatree.js',
+        'js/app/tag.js',
+        'js/app/upload.js',
+        'js/general/action-button.js',
+        'js/general/sortable.js',
     ];
 
     public $depends = [

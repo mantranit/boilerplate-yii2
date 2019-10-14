@@ -24,7 +24,7 @@ $(function(){
                 var filelist = document.getElementById('filelist');
                 plupload.each(files, function(file) {
                     $(filelist).append(
-                    '<div id="' + file.id + '" class="photo-zone large-4 medium-6 columns"><table cellpadding="0" cellspacing="0">' +
+                    '<div id="' + file.id + '" class="photo-zone col-4"><table cellpadding="0" cellspacing="0">' +
                         '<tr><td class="controls"><strong class="progress radius"></strong></td></tr>' +
                         '<tr><td class="edit"><span class="name">' +
                             file.name + ' (' + plupload.formatSize(file.size) + ')' +
@@ -80,7 +80,7 @@ $(function(){
                 //show control
                 var controlZone = document.getElementById(file.id).getElementsByClassName('controls')[0];
                 $(controlZone).empty()
-                    .append('<label><input type="radio" name="Product[image_id]" value="'+response.id+'" /> Main picture</label>')
+                    .append('<label><input type="radio" name="Product[image_id]" value="'+response.id+'" /> Hình chính</label>')
                     .append('<a class="delete-image" data-id="'+response.id+'" href="javascript:;"><i class="fa fa-trash-o"></i></a>');
 
                 var captionZone = document.getElementById(file.id).getElementsByClassName('caption')[0];

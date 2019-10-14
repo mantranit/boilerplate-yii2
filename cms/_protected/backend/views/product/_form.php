@@ -11,6 +11,7 @@ use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
 use common\helpers\UtilHelper;
 use common\helpers\CurrencyHelper;
+use yii\bootstrap4\Tabs;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Product */
@@ -43,279 +44,351 @@ $this->registerJs("
 
 ?>
 
-<div class="product-form row">
+<div class="product-form">
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'action-form'
-    ]); ?>
-    <div class="large-12 columns">
-        <ul class="tabs" data-tab role="tablist">
-            <li class="tab-title active" role="presentational" >
-                <a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">
-                    Thông tin sản phẩm
-                </a>
-            </li>
-            <li class="tab-title" role="presentational" >
-                <a href="#panel2-2" role="tab" tabindex="0" aria-selected="false" controls="panel2-2">
-                    Nội dung
-                </a>
-            </li>
-            <li class="tab-title" role="presentational">
-                <a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">
-                    SEO
-                </a>
-            </li>
-            <li class="tab-title" role="presentational" >
-                <a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">
-                    Sản phẩm liên quan
-                </a>
-            </li>
-        </ul>
-        <div class="tabs-content">
-            <section role="tabpanel" aria-hidden="false" class="row content active" id="panel2-1">
-                <div class="large-9 columns">
-                    <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
-                    <hr/>
+<?php $form = ActiveForm::begin([
+    'id' => 'action-form'
+]); ?>
+    
+<?php $this->beginBlock('information'); ?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-9">
+            <div class="portlet">
+                <div class="portlet-title">
+                    <h4>Thông tin</h4>
+                    <div class="actions">
+                        <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productName" aria-expanded="true"><i class="fa fa-compress"></i></button>
+                    </div>
+                </div>
+                <div class="portlet-body collapse show" id="productName">
+                <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
+                <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+                        'editorOptions' => array_merge(Yii::$app->params['toolbarIntro'], [
+                            'height' => 300
+                        ]),
+                    ]) ?>
+                </div>
+            </div>
+
+            <div class="portlet mt-3">
+                <div class="portlet-title">
+                    <h4>Quản lý giá</h4>
+                    <div class="actions">
+                        <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productPrice" aria-expanded="true"><i class="fa fa-compress"></i></button>
+                    </div>
+                </div>
+                <div class="portlet-body collapse show " id="productPrice">
                     <div class="price-zone">
                         <?php foreach (Json::decode($model->price_string) as $index => $prices) { ?>
                             <div class="row">
-                                <div class="small-4 columns">
-                                    <strong>Giá bảo hành <?= strpos($index, '3') > 0 ? 3 : 12 ?> tháng</strong>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">&nbsp;</label>
+                                        <div class="form-input">Giá bảo hành <?= strpos($index, '3') > 0 ? 3 : 12 ?> tháng</div>
+                                    </div>
                                 </div>
                                 <?php foreach ($prices as $key => $value) { ?>
-                                    <div class="small-4 columns">
+                                    <div class="col-4">
                                         <div class="form-group">
-                                            <label><span><?= Yii::t('app', $key) ?></span>
-                                                <?php if($index === 'month3' && $key === 'current') { ?>
-                                                    <?= Html::textInput('Price['.$index.']['.$key.']', (intval($value) !== 0 ? $value : CurrencyHelper::formatNumber($model->price)), ['class'=>'money-input']) ?>
-                                                <?php } else { ?>
-                                                    <?= Html::textInput('Price['.$index.']['.$key.']', $value, ['class'=>'money-input']) ?>
-                                                <?php } ?>
-                                            </label>
+                                            <label class="form-label"><span><?= Yii::t('app', $key) ?></span></label>
+                                            <?php if($index === 'month3' && $key === 'current') { ?>
+                                                <?= Html::textInput('Price['.$index.']['.$key.']', (intval($value) !== 0 ? $value : CurrencyHelper::formatNumber($model->price)), ['class'=>'form-control money-input']) ?>
+                                            <?php } else { ?>
+                                                <?= Html::textInput('Price['.$index.']['.$key.']', $value, ['class'=>'form-control money-input']) ?>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 <?php } ?>
                             </div>
                         <?php } ?>
                     </div>
-                    <hr/>
-                    <?= $form->field($model, 'description')->widget(CKEditor::className(), [
-                        'editorOptions' => array_merge(Yii::$app->params['toolbarIntro'], [
-                            'height' => 300
-                        ]),
-                    ]) ?>
+                </div>
+            </div>
 
-                    <div>
-                        <hr>
-                        <h6>Hình sản phẩm</h6>
-                        <div id="filelist" class="view-thumbnail row">
-                            <?php
-                            foreach ($pictures as $index => $item) {
-                                ?>
-                                <div id="<?= $item->id ?>" class="photo-zone large-4 medium-6 columns">
-                                    <table cellpadding="0" cellspacing="0">
-                                        <tr><td class="controls">
-                                                <label><input type="radio" name="Product[image_id]" value="<?= $item->id ?>" <?php if(intval($item->id) === intval($model->image_id)) echo 'checked="checked"'; ?> /> Hình chính</label>
-                                                <a class="delete-image" data-id="<?= $item->id ?>" href="javascript:;"><i class="fa fa-trash-o"></i></a>
-                                            </td></tr>
-                                        <tr><td class="edit"><span class="name">
-                                                    <a class="various" data-fancybox-type="iframe" href="<?= Url::toRoute(['file/watermask', 'id' => $item->id]) ?>">
-                                                <img src="<?= $item->show_url ?><?= $item->name ?>-thumb-upload.<?= $item->file_ext ?>" alt="<?= $item->name ?>" />
-                                                    </a>
-                                            </span></td></tr>
-                                        <tr><td class="caption">
-                                                <textarea rows="4" name="Picture[<?= $item->id ?>][caption]" placeholder="Say something about this photo."><?= $item->caption ?></textarea>
-                                                <input type="hidden" name="Picture[<?= $item->id ?>][id]" value="<?= $item->id ?>"/>
-                                            </td></tr>
-                                    </table></div>
-                            <?php } ?>
-                        </div>
-                        <div id="uploader" data-upload-link="<?=Url::toRoute('image/create')?>">
-                            <a id="pickfiles" href="javascript:;" class="tiny button radius">Select files</a>
-                        </div>
-                        <pre id="console"></pre>
+            <div class="portlet mt-3">
+                <div class="portlet-title">
+                    <h4>Hình sản phẩm</h4>
+                    <div class="actions">
+                        <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productImages" aria-expanded="true"><i class="fa fa-compress"></i></button>
                     </div>
                 </div>
-                <div class="large-3 columns">
+                <div class="portlet-body collapse show " id="productImages">
+                    <div id="filelist" class="view-thumbnail row">
+                    <?php
+                    foreach ($pictures as $index => $item) {
+                        ?>
+                        <div id="<?= $item->id ?>" class="photo-zone col-4">
+                            <table cellpadding="0" cellspacing="0">
+                                <tr><td class="controls">
+                                        <label><input type="radio" name="Product[image_id]" value="<?= $item->id ?>" <?php if(intval($item->id) === intval($model->image_id)) echo 'checked="checked"'; ?> /> Hình chính</label>
+                                        <a class="delete-image" data-id="<?= $item->id ?>" href="javascript:;"><i class="fa fa-trash-o"></i></a>
+                                    </td></tr>
+                                <tr><td class="edit"><span class="name">
+                                            <a class="various" data-fancybox-type="iframe" href="<?= Url::toRoute(['file/watermask', 'id' => $item->id]) ?>">
+                                        <img src="<?= $item->show_url ?><?= $item->name ?>-thumb-upload.<?= $item->file_ext ?>" alt="<?= $item->name ?>" />
+                                            </a>
+                                    </span></td></tr>
+                                <tr><td class="caption">
+                                        <textarea rows="4" name="Picture[<?= $item->id ?>][caption]" placeholder="Say something about this photo."><?= $item->caption ?></textarea>
+                                        <input type="hidden" name="Picture[<?= $item->id ?>][id]" value="<?= $item->id ?>"/>
+                                    </td></tr>
+                            </table></div>
+                    <?php } ?>
+                    </div>
+                    <div id="uploader" data-upload-link="<?=Url::toRoute('image/create')?>">
+                        <a id="pickfiles" href="javascript:;" class="btn btn-sm btn-success mt-3">Select files</a>
+                    </div>
+                    <pre id="console"></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 pl-0">
+            <div class="portlet">
+                <div class="portlet-title">
+                    <h4></h4>
+                    <div class="actions">
+                        <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productHighlight" aria-expanded="true"><i class="fa fa-compress"></i></button>
+                    </div>
+                </div>
+                <div class="portlet-body collapse show" id="productHighlight">
                     <?php if($model->status !== Product::STATUS_DRAFT) { ?>
                         <?= $form->field($model, 'status')->dropDownList($model->getStatusListEdit()) ?>
                     <?php } ?>
                     <?= $form->field($model, 'is_hot')->checkbox() ?>
                     <?= $form->field($model, 'is_discount')->checkbox() ?>
-                    <?= $form->field($model, 'discount')->textInput(['value' => CurrencyHelper::formatNumber($model->discount), 'class' => 'money-input']) ?>
-                    <hr/>
+                    <!-- <?= $form->field($model, 'discount')->textInput(['value' => CurrencyHelper::formatNumber($model->discount), 'class' => 'money-input']) ?> -->
+                </div>
+            </div>
+
+            <div class="portlet mt-3">
+                <div class="portlet-title">
+                    <h4>Danh mục</h4>
+                    <div class="actions">
+                        <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productCategory" aria-expanded="true"><i class="fa fa-compress"></i></button>
+                    </div>
+                </div>
+                <div class="portlet-body collapse show" id="productCategory">
                     <script>
-                        var treeData = [
-                            <?php
-                            $tree = Category::getTree();
-                            $total = count($tree);
-                            $categoryList = Json::decode($categories);
-                            $htmlString = '';
-                            foreach ($tree as $index => $papa) {
-                                $htmlString .= '{title: "'.$papa['name'].'", isFolder: true, key: "'.$papa['id'].'"';
-                                if(in_array(intval($papa['id']), $categoryList)) {
-                                    $htmlString .= ', select: true';
-                                }
-
-                                if(isset($papa['children'])) {
-                                    $total2 = count($papa['children']);
-                                    $htmlString .= ', children: [';
-                                    foreach ($papa['children'] as $inx => $child) {
-                                        $htmlString .= '{title: "'.$child['name'].'", isFolder: true, key: "'.$child['id'].'"';
-                                        if(in_array(intval($child['id']), $categoryList)) {
-                                            $htmlString .= ', select: true';
-                                        }
-                                        if($inx < $total2 - 1) {
-                                            $htmlString .= '},';
-                                        }
-                                        else {
-                                            $htmlString .= '}';
-                                        }
-                                    }
-                                    $htmlString .= ']';
-                                }
-
-                                if($index < $total - 1) {
-                                    $htmlString .= '},';
-                                }
-                                else {
-                                    $htmlString .= '}';
-                                }
+                    var treeData = [
+                        <?php
+                        $tree = Category::getTree();
+                        $total = count($tree);
+                        $categoryList = Json::decode($categories);
+                        $htmlString = '';
+                        foreach ($tree as $index => $papa) {
+                            $htmlString .= '{title: "'.$papa['name'].'", isFolder: true, key: "'.$papa['id'].'"';
+                            if(in_array(intval($papa['id']), $categoryList)) {
+                                $htmlString .= ', select: true';
                             }
 
-                            echo $htmlString;
-                            ?>
-                        ];
+                            if(isset($papa['children'])) {
+                                $total2 = count($papa['children']);
+                                $htmlString .= ', children: [';
+                                foreach ($papa['children'] as $inx => $child) {
+                                    $htmlString .= '{title: "'.$child['name'].'", isFolder: true, key: "'.$child['id'].'"';
+                                    if(in_array(intval($child['id']), $categoryList)) {
+                                        $htmlString .= ', select: true';
+                                    }
+                                    if($inx < $total2 - 1) {
+                                        $htmlString .= '},';
+                                    }
+                                    else {
+                                        $htmlString .= '}';
+                                    }
+                                }
+                                $htmlString .= ']';
+                            }
+
+                            if($index < $total - 1) {
+                                $htmlString .= '},';
+                            }
+                            else {
+                                $htmlString .= '}';
+                            }
+                        }
+
+                        echo $htmlString;
+                        ?>
+                    ];
                     </script>
                     <div class="form-group">
-                        <label>Danh mục</label>
                         <div id="tree2"></div>
                         <input id="echoSelection2" type="hidden" name="Category" value="<?= implode(',', $categoryList) ?>"/>
                     </div>
+                </div>
+            </div>
+
+            <div class="portlet mt-3">
+                <div class="portlet-title">
+                    <h4>Thẻ</h4>
+                    <div class="actions">
+                        <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productTags" aria-expanded="true"><i class="fa fa-compress"></i></button>
+                    </div>
+                </div>
+                <div class="portlet-body collapse show" id="productTags">
                     <div class="form-group">
-                        <label>Tags</label>
                         <textarea id="tags" rows="1" name="Tag" data-value='<?= Html::decode($tags) ?>' data-suggestions="<?= Html::decode($tagSuggestions) ?>"></textarea>
                     </div>
                 </div>
-            </section>
-            <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-2">
-                <div class="large-12 columns">
-                    <ul class="tabs" data-tab role="tablist">
-                        <li class="tab-title active" role="presentational" >
-                            <a href="#panel1-1" role="tab" tabindex="0" aria-selected="true" controls="panel1-1">
-                                Tổng quan
-                            </a>
-                        </li>
-                        <li class="tab-title" role="presentational" >
-                            <a href="#panel1-2" role="tab" tabindex="0"aria-selected="false" controls="panel1-2">
-                                Thông số kỷ thuật
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tabs-content">
-                        <section role="tabpanel" aria-hidden="false" class="row content active" id="panel1-1">
-                            <div class="large-12 columns">
-                                <?= $form->field($model, 'general')->widget(CKEditor::className(), [
-                                    'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],
-                                        array_merge(Yii::$app->params['toolbarContent'], [
-                                            'height' => 600
-                                        ])
-                                    ),
-                                ]) ?>
-                            </div>
-                        </section>
-                        <section role="tabpanel" aria-hidden="true" class="row content" id="panel1-2">
-                            <div class="large-12 columns">
-                                <?= $form->field($model, 'info_tech')->widget(CKEditor::className(), [
-                                    'editorOptions' => array_merge(Yii::$app->params['toolbarIntro'], [
-                                        'height' => 600
-                                    ]),
-                                ]) ?>
-                            </div>
-                        </section>
-                    </div>
-
-                </div>
-            </section>
-            <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-3">
-                <div class="columns">
-                    <?php if($model->slug !== null) { ?>
-                        <?= $form->field($model, 'slug')->textInput(['maxlength' => 128]) ?>
-                    <?php } ?>
-                    <?= $form->field($model, 'seo_title')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
-                    <?= $form->field($model, 'seo_keyword')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
-                    <?= $form->field($model, 'seo_description')->textarea(['maxlength' => 256, 'rows' => 5]) ?>
-                </div>
-            </section>
-            <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-4">
-                <input id="relatedProduct" type="hidden" name="Related" value="" />
-                <div class="medium-6 columns related">
-                    <div class="portlet small">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-cogs"></i>Sản phẩm liên quan
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <ul class="connected list sortable grid">
-                                <?php foreach ($products as $index => $item) {
-                                    $img = UtilHelper::getPicture($item->image, 'thumb-list', true);
-                                    ?>
-                                    <li data-id="<?= $item->id ?>" title="<?= $item->name ?>">
-                                        <img src="<?= $img ?>" alt="" />
-                                        <a href="javascript:;"><?= $item->name ?></a>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="medium-6 columns search">
-                    <div class="portlet small">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-cogs"></i>Tất cả sản phẩm
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div class="search-box">
-                                <input type="text" placeholder="Enter keyword" />
-                            </div>
-                            <ul class="connected list no2">
-                                <?php foreach ($productSuggestion as $index => $item) {
-                                    $img = UtilHelper::getPicture($item->image, 'thumb-list', true);
-                                    ?>
-                                    <li data-id="<?= $item->id ?>" title="<?= $item->name ?>">
-                                        <img src="<?= $img ?>" alt="" />
-                                        <a href="javascript:;"><?= $item->name ?></a>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <div class="action-buttons">
-                <input type="hidden" name="type-submit" value="" />
-                <?= Html::submitButton($model->status === Product::STATUS_DRAFT ? 'Hiển thị' : 'Cập nhật',
-                    [
-                        'class' => 'small button radius',
-                        'data' => ['submit' => 1]
-                    ]) ?>
-                <?php if($model->status === null || $model->status === Product::STATUS_DRAFT) { ?>
-                    <?= Html::submitButton($model->id ? 'Cập nhật tạm' : 'Lưu tạm',
-                        [
-                            'class' => 'small button radius info',
-                            'data' => ['submit' => 0]
-                        ]) ?>
-                <?php } ?>
-                <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
             </div>
         </div>
     </div>
+</div>
+<?php $this->endBlock(); ?>
 
+<?php $this->beginBlock('content'); ?>
+<div class="container-fluid">
+    <div class="portlet">
+        <div class="portlet-body">
+            <nav>
+                <div class="nav nav-tabs nav-fill" role="tablist">
+                    <a class="nav-item nav-link active" data-toggle="tab" href="#contentGeneral" role="tab">Tổng quan</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="#contentTech" role="tab">Thông số kỹ thuật</a>
+                </div>
+            </nav>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="contentGeneral" role="tabpanel">
+                    <div class="form-no-label">
+                        <?= $form->field($model, 'general')->widget(CKEditor::className(), [
+                            'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],
+                                array_merge(Yii::$app->params['toolbarContent'], [
+                                    'height' => 600
+                                ])
+                            ),
+                        ]) ?>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="contentTech" role="tabpanel">
+                    <div class="form-no-label">
+                        <?= $form->field($model, 'info_tech')->widget(CKEditor::className(), [
+                            'editorOptions' => array_merge(Yii::$app->params['toolbarIntro'], [
+                                'height' => 600
+                            ]),
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php $this->endBlock() ?>
+
+<?php $this->beginBlock('seo'); ?>
+<div class="container-fluid">
+    <div class="portlet">
+        <div class="portlet-title">
+            <h4>Thẻ</h4>
+            <div class="actions">
+                <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productTags" aria-expanded="true"><i class="fa fa-compress"></i></button>
+            </div>
+        </div>
+        <div class="portlet-body collapse show" id="productTags">
+            <?php if($model->slug !== null) { ?>
+                <?= $form->field($model, 'slug')->textInput(['maxlength' => 128]) ?>
+            <?php } ?>
+            <?= $form->field($model, 'seo_title')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
+            <?= $form->field($model, 'seo_keyword')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
+            <?= $form->field($model, 'seo_description')->textarea(['maxlength' => 256, 'rows' => 5]) ?>
+        </div>
+    </div>
+</div>
+<?php $this->endBlock() ?>
+
+<?php $this->beginBlock('related'); ?>
+<input id="relatedProduct" type="hidden" name="Related" value="" />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 pr-0">
+            <div class="portlet">
+                <div class="portlet-title">
+                    <h4>Sản phẩm đã chọn</h4>
+                    <div class="actions">
+                        <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productTags" aria-expanded="true"><i class="fa fa-compress"></i></button>
+                    </div>
+                </div>
+                <div class="portlet-body collapse show related" id="productTags">
+                    <ul class="connected list sortable grid">
+                        <?php foreach ($products as $index => $item) {
+                            $img = UtilHelper::getPicture($item->image, 'thumb-list', true);
+                            ?>
+                            <li data-id="<?= $item->id ?>" title="<?= $item->name ?>">
+                                <img src="<?= $img ?>" alt="" />
+                                <a href="javascript:;"><?= $item->name ?></a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="portlet">
+                <div class="portlet-title">
+                    <h4>Tất cả sản phẩm</h4>
+                    <div class="actions">
+                        <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productTags" aria-expanded="true"><i class="fa fa-compress"></i></button>
+                    </div>
+                </div>
+                <div class="portlet-body collapse show search" id="productTags">
+                    <div class="search-box">
+                        <input type="text" placeholder="Enter keyword" class="form-control" />
+                    </div>
+                    <ul class="connected list no2">
+                        <?php foreach ($productSuggestion as $index => $item) {
+                            $img = UtilHelper::getPicture($item->image, 'thumb-list', true);
+                            ?>
+                            <li data-id="<?= $item->id ?>" title="<?= $item->name ?>">
+                                <img src="<?= $img ?>" alt="" />
+                                <a href="javascript:;"><?= $item->name ?></a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php $this->endBlock() ?>
+
+<?= Tabs::widget([
+        'items' => [
+            [
+                'label' => 'Sản phẩm',
+                'content' => $this->blocks['information'],
+                'active' => true
+            ],
+            [
+                'label' => 'Nội dung',
+                'content' => $this->blocks['content'],
+            ],
+            [
+                'label' => 'SEO',
+                'content' => $this->blocks['seo'],
+            ],
+            [
+                'label' => 'Sản phẩm liên quan',
+                'content' => $this->blocks['related'],
+            ],
+        ],
+    ]);
+?>
+
+    <div class="action-buttons d-flex justify-content-end m-3">
+        <input type="hidden" name="type-submit" value="" />
+        <?= Html::submitButton($model->status === Product::STATUS_DRAFT ? 'Hiển thị' : 'Cập nhật',
+            [
+                'class' => 'btn btn-success mr-2',
+                'data' => ['submit' => 1]
+            ]) ?>
+        <?php if($model->status === null || $model->status === Product::STATUS_DRAFT) { ?>
+            <?= Html::submitButton($model->id ? 'Cập nhật tạm' : 'Lưu tạm',
+                [
+                    'class' => 'btn btn-primary mr-2',
+                    'data' => ['submit' => 0]
+                ]) ?>
+        <?php } ?>
+        <?= Html::a('Bỏ qua', ['index'], ['class' => 'btn btn-secondary']) ?>
+    </div>
     <?php ActiveForm::end(); ?>
-
 </div>

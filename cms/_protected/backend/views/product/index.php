@@ -7,7 +7,6 @@ use yii\helpers\ArrayHelper;
 use common\helpers\UtilHelper;
 use yii\widgets\Pjax;
 use common\models\Category;
-use yii\bootstrap4\Modal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ProductSearch */
@@ -18,24 +17,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="product-index">
 
-    <h2>Danh sách sản phẩm</h2>
+    <h2>Danh sách sản phẩm <?= $this->render('_popup') ?></h2>
     <div class="portlet">
         <div class="portlet-title">
             <h4>&nbsp;</h4>
             <div class="actions">
-                <?php
-                    Modal::begin([
-                        'title' => 'Thêm mới',
-                        'toggleButton' => [
-                            'label' => '<i class="fa fa-plus"></i>',
-                            'class' => 'btn btn-lg btn-link'
-                        ],
-                    ]);
-                ?>
-                <?= $this->render('_popup') ?>
-                <?php Modal::end(); ?>
-
-<!--                <button type="button" class="btn btn-lg btn-link" data-toggle="collapse" data-target="#listProduct" aria-expanded="true"><i class="fa fa-compress"></i></button>-->
+               <button type="button" class="btn btn-lg btn-link" data-toggle="collapse" data-target="#listProduct" aria-expanded="true"><i class="fa fa-compress"></i></button>
             </div>
         </div>
         <div class="portlet-body collapse show" id="listProduct">
