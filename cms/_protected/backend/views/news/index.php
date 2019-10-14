@@ -21,10 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </h2>
 
         <div class="portlet">
-            <div class="portlet-title"></div>
-            <div class="portlet-body has-padding">
+            <div class="portlet-body p-0 pb-3">
                 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-                <div class="row">
                 <?php Pjax::begin(['id' => 'news', 'options' => ['class' => 'w-100']]) ?>
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
@@ -78,7 +76,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]); ?>
                 <?php Pjax::end() ?>
-                </div>
             </div>
         </div>
     </div>

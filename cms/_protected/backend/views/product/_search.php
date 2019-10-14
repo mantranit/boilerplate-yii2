@@ -10,7 +10,7 @@ use common\models\Category;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="product-search form-no-label">
+<div class="product-search form-no-label form-one-line">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],

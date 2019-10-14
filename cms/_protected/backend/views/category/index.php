@@ -21,13 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </h2>
         <div class="portlet">
-            <div class="portlet-title">
-                <h4></h4>
-            </div>
-            <div class="portlet-body">
+            <div class="portlet-body p-0">
                 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
                 <?php Pjax::begin(['id' => 'categories']) ?>
-                    <table class="table table-striped table-bordered table-hover mb-0"><thead>
+                    <table class="table table-striped table-borderless table-hover mb-0"><thead>
                         <tr>
                             <th>#</th>
                             <th>Tên danh mục</th>

@@ -24,12 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </h2>
         <div class="portlet">
-            <div class="portlet-title">
-                <h4></h4>
-            </div>
             <div class="portlet-body">
                 <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-                <div class="row">
+            </div>
+        </div>
+        <div class="portlet mt-4">
+            <div class="portlet-body p-0 pb-3">
                 <?php Pjax::begin(['id' => 'products', 'options' => ['class' => 'w-100']]) ?>
                 <?= GridView::widget([
                     'tableOptions' => ['class' => 'table table-striped table-borderless table-hover'],
@@ -112,7 +112,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]); ?>
                 <?php Pjax::end() ?>
-                </div>
             </div>
         </div>
     </div>
