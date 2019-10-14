@@ -51,6 +51,14 @@ class ContentSearch extends Content
             $query->orderBy('created_date DESC');
         }
 
+        if(isset($params['sort'])) {
+            if($params['sort'][0] === '-') {
+                $query->orderBy(trim($params['sort'], '-') . ' DESC');
+            } else {
+                $query->orderBy($params['sort'] . ' ASC');
+            }
+        }
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

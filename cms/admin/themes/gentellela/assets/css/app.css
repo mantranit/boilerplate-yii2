@@ -392,6 +392,9 @@ h1, h2, h3, h4, h5, h6 {
 .form-no-label .control-label {
   display: none; }
 
+.form-one-line .form-group {
+  margin-bottom: 0; }
+
 .view-thumbnail [class*=column] + [class*=column]:last-child {
   float: left; }
 
