@@ -43,7 +43,7 @@ a{
     }
 }
 .table-striped {
-    thead{
+    thead tr:first-child{
         background-color: #e9ecef;
     }
     tbody tr:nth-of-type(odd) {
@@ -62,12 +62,15 @@ a{
 .nav-tabs .nav-link{
     font-size: 18px;
 }
-.text-core .text-wrap .text-tags{
-    top: 0;
-    left: 0;
+.text-core {
+    position: relative;
+    .text-wrap .text-tags {
+        top: 0;
+        left: 0;
+    }
 }
 .text-core .text-wrap,
-.text-core .text-wrap textarea, 
+.text-core .text-wrap textarea,
 .text-core .text-wrap input{
     width: 100% !important;
 }

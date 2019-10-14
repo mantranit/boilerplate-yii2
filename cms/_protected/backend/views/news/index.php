@@ -12,60 +12,74 @@ $this->title = 'Quản lý bài viết';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="page-index">
-    <div class="portlet">
-        <div class="portlet-title">
-            <div class="caption">Danh sách bài viết</div>
-            <div class="action">
-                <ul class="button-group">
-                    <li><?= Html::a('Tạo mới', ['create'], ['class' => 'tiny button round', 'data' => ['reveal-id' => 'create']]) ?></li>
-                </ul>
+    <div class="container-fluid">
+        <h2>
+            <?= Html::encode($this->title) ?>
+            <div class="actions">
+                <?= $this->render('_popup') ?>
             </div>
-        </div>
-        <div class="portlet-body has-padding">
-            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-            <?php Pjax::begin(['id' => 'news']) ?>
-            <?= GridView::widget([
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
-                    [
-                        'attribute'=>'name',
-                        'format'=>'html',
-                        'value'=> function($data) {
-                            return Html::a($data->name, ['update', 'id' => $data->id]);
-                        }
+        </h2>
+
+        <div class="portlet">
+            <div class="portlet-title"></div>
+            <div class="portlet-body has-padding">
+                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                <div class="row">
+                <?php Pjax::begin(['id' => 'news', 'options' => ['class' => 'w-100']]) ?>
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel,
+                    'tableOptions' => ['class' => 'table table-striped table-borderless table-hover'],
+                    'layout' => '{items}<div class="controls">{pager}{summary}</div>',
+                    'pager' => [
+                        'class' => 'yii\bootstrap4\LinkPager',
                     ],
-                    [
-                        'attribute' => 'status',
-                        'filter' => $searchModel->getStatusList(),
-                        'value' => function($data) {
-                            return $data->statusName;
-                        }
-                    ],
-                    // buttons
-                    ['class' => 'yii\grid\ActionColumn',
-                        'header' => "Menu",
-                        'template' => '{update} {delete}',
-                        'buttons' => [
-                            'update' => function ($url, $model, $key) {
-                                return Html::a('', $url, ['title'=>'Manage page',
-                                    'class'=>'fa fa-pencil-square-o']);
-                            },
-                            'delete' => function ($url, $model, $key) {
-                                return Html::a('', $url,
-                                    ['title'=>'Delete page',
-                                        'class'=>'fa fa-trash-o',
-                                        'data' => [
-                                            'confirm' => Yii::t('app', 'Are you sure you want to delete this page?'),
-                                            'method' => 'post']
-                                    ]);
+                    'columns' => [
+                        ['class' => 'yii\grid\SerialColumn'],
+                        [
+                            'attribute'=>'name',
+                            'format'=>'html',
+                            'value'=> function($data) {
+                                return Html::a($data->name, ['update', 'id' => $data->id]);
                             }
-                        ]
-                    ], // ActionColumn
-                ],
-            ]); ?>
+                        ],
+                        [
+                            'attribute' => 'created_date',
+                            'format'=>['date', 'php: d/m/Y'],
+                            'filter'=>false,
+                        ],
+                        [
+                            'attribute' => 'status',
+                            'filter' => $searchModel->getStatusList(),
+                            'value' => function($data) {
+                                return $data->statusName;
+                            }
+                        ],
+                        // buttons
+                        ['class' => 'yii\grid\ActionColumn',
+                            'header' => "Menu",
+                            'template' => '{update} &nbsp; {delete}',
+                            'buttons' => [
+                                'update' => function ($url, $model, $key) {
+                                    return Html::a('', $url, ['title'=>'Manage page',
+                                        'class'=>'fa fa-pencil-square-o']);
+                                },
+                                'delete' => function ($url, $model, $key) {
+                                    return Html::a('', $url,
+                                        ['title'=>'Delete page',
+                                            'class'=>'fa fa-trash-o',
+                                            'data' => [
+                                                'confirm' => Yii::t('app', 'Are you sure you want to delete this page?'),
+                                                'method' => 'post']
+                                        ]);
+                                }
+                            ]
+                        ], // ActionColumn
+                    ],
+                ]); ?>
+                <?php Pjax::end() ?>
+                </div>
+            </div>
         </div>
     </div>
 </article>
-<?= $this->render('_popup') ?>

@@ -88,7 +88,7 @@ class Content extends \yii\db\ActiveRecord
             'show_in_menu' => 'Kích hoạt',
             'updated_date' => Yii::t('app', 'Updated Date'),
             'sorting' => 'Sắp xếp',
-            'created_date' => Yii::t('app', 'Created Date'),
+            'created_date' => Yii::t('app', 'Ngày tạo'),
             'created_by' => Yii::t('app', 'Created By'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];

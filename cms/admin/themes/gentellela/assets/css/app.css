@@ -997,6 +997,15 @@ span.dynatree-drop-target.dynatree-drop-reject {
 .form-group-enabled {
   margin-top: 20px; }
 
+.nav-tabs--product {
+  padding: 0 1rem 1rem;
+  border-bottom: none; }
+  .nav-tabs--product .nav-link {
+    margin-right: 10px; }
+    .nav-tabs--product .nav-link:hover, .nav-tabs--product .nav-link.active {
+      border-color: #43a5ed;
+      border-radius: 0.25rem; }
+
 /* Components */
 .btn-primary {
   background-color: #43a5ed;
@@ -1033,7 +1042,7 @@ a {
     .modal-header .close:hover {
       color: #2e73a5; }
 
-.table-striped thead {
+.table-striped thead tr:first-child {
   background-color: #e9ecef; }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -1050,9 +1059,11 @@ a {
 .nav-tabs .nav-link {
   font-size: 18px; }
 
-.text-core .text-wrap .text-tags {
-  top: 0;
-  left: 0; }
+.text-core {
+  position: relative; }
+  .text-core .text-wrap .text-tags {
+    top: 0;
+    left: 0; }
 
 .text-core .text-wrap,
 .text-core .text-wrap textarea,

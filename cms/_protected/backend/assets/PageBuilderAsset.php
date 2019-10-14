@@ -32,7 +32,11 @@ class PageBuilderAsset extends AssetBundle
         'textext/js/textext.plugin.autocomplete.js',
         'textext/js/textext.plugin.tags.js',
         'js/vendor/colpick.js',
-        'js/page-builder.min.js'
+//        'js/page-builder.min.js',
+        'js/page-builder/events.js',
+        'js/page-builder/page.js',
+        'js/page-builder/tag.js',
+        'js/page-builder/upload.js',
     ];
 
     public $depends = [

@@ -38,7 +38,7 @@ ArrangementAsset::register($this);
                 <div class="row">
                     <div class="action-buttons">
                         <?= Html::submitButton('Cập nhật', ['class' => 'btn btn-success mr-2']) ?>
-                        <?= Html::a('Bỏ qua', ['index'], ['class' => 'btn btn-secondary']) ?>
+                        <?= Html::a('Quay lại', ['index'], ['class' => 'btn btn-secondary']) ?>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@ ArrangementAsset::register($this);
                 <div class="row">
                     <div class="action-buttons">
                         <?= Html::submitButton('Cập nhật', ['class' => 'btn btn-success mr-2']) ?>
-                        <?= Html::a('Bỏ qua', ['index'], ['class' => 'btn btn-secondary']) ?>
+                        <?= Html::a('Quay lại', ['index'], ['class' => 'btn btn-secondary']) ?>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@ ArrangementAsset::register($this);
                 <div class="row">
                     <div class="action-buttons">
                         <?= Html::submitButton('Cập nhật', ['class' => 'btn btn-success mr-2']) ?>
-                        <?= Html::a('Bỏ qua', ['index'], ['class' => 'btn btn-secondary']) ?>
+                        <?= Html::a('Quay lại', ['index'], ['class' => 'btn btn-secondary']) ?>
                     </div>
                 </div>
             </div>
@@ -174,7 +174,7 @@ ArrangementAsset::register($this);
                 <div class="row">
                     <div class="action-buttons">
                         <?= Html::submitButton('Cập nhật', ['name' => 'Support[submit]', 'class' => 'btn btn-success mr-2']) ?>
-                        <?= Html::a('Bỏ qua', ['index'], ['class' => 'btn btn-secondary']) ?>
+                        <?= Html::a('Quay lại', ['index'], ['class' => 'btn btn-secondary']) ?>
                     </div>
                 </div>
             </div>

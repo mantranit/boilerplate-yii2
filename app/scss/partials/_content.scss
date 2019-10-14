@@ -55,3 +55,15 @@
 .form-group-enabled{
     margin-top: 20px;
 }
+.nav-tabs--product{
+    padding: 0 1rem 1rem;
+    border-bottom: none;
+    .nav-link {
+        margin-right: 10px;
+        &:hover,
+        &.active {
+            border-color: $color-primary;
+            border-radius: 0.25rem;
+        }
+    }
+}

@@ -49,7 +49,7 @@ $this->registerJs("
 <?php $form = ActiveForm::begin([
     'id' => 'action-form'
 ]); ?>
-    
+
 <?php $this->beginBlock('information'); ?>
 <div class="container-fluid">
     <div class="row">
@@ -63,7 +63,7 @@ $this->registerJs("
                 </div>
                 <div class="portlet-body collapse show" id="productName">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
-                <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+                <?= $form->field($model, 'description')->widget('mihaildev\ckeditor\CKEditor', [
                         'editorOptions' => array_merge(Yii::$app->params['toolbarIntro'], [
                             'height' => 300
                         ]),
@@ -251,7 +251,7 @@ $this->registerJs("
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="contentGeneral" role="tabpanel">
                     <div class="form-no-label">
-                        <?= $form->field($model, 'general')->widget(CKEditor::className(), [
+                        <?= $form->field($model, 'general')->widget('mihaildev\ckeditor\CKEditor', [
                             'editorOptions' => ElFinder::ckeditorOptions(['elfinder'],
                                 array_merge(Yii::$app->params['toolbarContent'], [
                                     'height' => 600
@@ -262,7 +262,7 @@ $this->registerJs("
                 </div>
                 <div class="tab-pane fade" id="contentTech" role="tabpanel">
                     <div class="form-no-label">
-                        <?= $form->field($model, 'info_tech')->widget(CKEditor::className(), [
+                        <?= $form->field($model, 'info_tech')->widget('mihaildev\ckeditor\CKEditor', [
                             'editorOptions' => array_merge(Yii::$app->params['toolbarIntro'], [
                                 'height' => 600
                             ]),
@@ -343,6 +343,7 @@ $this->registerJs("
 <?php $this->endBlock() ?>
 
 <?= Tabs::widget([
+        'options' => ['class' => 'nav-tabs--product'],
         'items' => [
             [
                 'label' => 'Sản phẩm',
@@ -379,7 +380,7 @@ $this->registerJs("
                     'data' => ['submit' => 0]
                 ]) ?>
         <?php } ?>
-        <?= Html::a('Bỏ qua', ['index'], ['class' => 'btn btn-secondary']) ?>
+        <?= Html::a('Quay lại', ['index'], ['class' => 'btn btn-secondary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

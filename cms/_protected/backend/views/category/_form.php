@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use mihaildev\ckeditor\CKEditor;
+use yii\bootstrap4\Tabs;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Category */
@@ -35,59 +36,66 @@ $this->registerJs("
 
 ?>
 
-<div class="category-form row">
-
+<div class="category-form">
     <?php $form = ActiveForm::begin(); ?>
-    <div class="large-12 columns">
-        <ul class="tabs" data-tab role="tablist">
-            <li class="tab-title active" role="presentational" >
-                <a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">
-                    Nội dung
-                </a>
-            </li>
-            <li class="tab-title" role="presentational">
-                <a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">
-                    SEO
-                </a>
-            </li>
-        </ul>
-        <div class="tabs-content">
-            <section role="tabpanel" aria-hidden="false" class="row content active" id="panel2-1">
-                <div class="large-12 columns">
+        <?php $this->beginBlock('content'); ?>
+        <div class="container-fluid">
+            <div class="portlet">
+                <div class="portlet-title"></div>
+                <div class="portlet-body">
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'parent_id')->dropDownList(ArrayHelper::map($model->getParents($model->id, 0, 0), 'id', 'name'), ['prompt'=>'- please select -']) ?>
 
-                    <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+                    <?= $form->field($model, 'description')->widget('mihaildev\ckeditor\CKEditor', [
                         'editorOptions' => array_merge(Yii::$app->params['toolbarDescription'], [
                             'height' => 300
                         ]),
                     ]) ?>
 
-                    <?= $form->field($model, 'general')->widget(CKEditor::className(), [
+                    <?= $form->field($model, 'general')->widget('mihaildev\ckeditor\CKEditor', [
                         'editorOptions' => array_merge(Yii::$app->params['toolbarContent'], [
                             'height' => 500
                         ]),
                     ]) ?>
                 </div>
-            </section>
-            <section role="tabpanel" aria-hidden="true" class="row content" id="panel2-3">
-                <div class="large-12 columns">
+            </div>
+        </div>
+        <?php $this->endBlock(); ?>
+
+        <?php $this->beginBlock('seo'); ?>
+        <div class="container-fluid">
+            <div class="portlet">
+                <div class="portlet-title"></div>
+                <div class="portlet-body">
                     <?php if($model->slug !== null) { ?>
                         <?= $form->field($model, 'slug')->textInput(['maxlength' => 128]) ?>
                     <?php } ?>
-                    <?= $form->field($model, 'seo_title')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
+                    <?= $form->field($model, 'seo_title')->textInput(['maxlength' => 128]) ?>
                     <?= $form->field($model, 'seo_keyword')->textarea(['maxlength' => 128, 'rows' => 2]) ?>
                     <?= $form->field($model, 'seo_description')->textarea(['maxlength' => 256, 'rows' => 5]) ?>
                 </div>
-            </section>
+            </div>
         </div>
+        <?php $this->endBlock(); ?>
 
-        <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Tạo mới' : 'Cập nhật', ['class' => 'small button radius']) ?>
-        </div>
+        <?= Tabs::widget([
+            'options' => ['class' => 'nav-tabs--product'],
+            'items' => [
+                [
+                    'label' => 'Nội dung',
+                    'content' => $this->blocks['content'],
+                ],
+                [
+                    'label' => 'SEO',
+                    'content' => $this->blocks['seo'],
+                ],
+            ],
+        ]);
+        ?>
+    <div class="action-buttons d-flex justify-content-end m-3">
+        <?= Html::submitButton($model->isNewRecord ? 'Tạo mới' : 'Cập nhật', ['class' => 'btn btn-success mr-3']) ?>
+        <?= Html::a('Quay lại', Url::toRoute(['index']), ['class' => 'btn btn-secondary']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>

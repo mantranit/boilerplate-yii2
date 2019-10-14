@@ -15,7 +15,7 @@ use yii\bootstrap4\Modal;
         'title' => 'Thêm mới',
         'toggleButton' => [
             'label' => '<i class="fa fa-plus"></i>',
-            'class' => 'btn btn-link'
+            'class' => 'btn btn-lg btn-link'
         ],
     ]);
 ?>

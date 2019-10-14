@@ -15,10 +15,10 @@ use common\models\Category;
 $this->title = 'Quản lý sản phẩm';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<article class="product-index">
+<article class="product-index pb-3">
     <div class="container-fluid">
         <h2>
-            Danh sách sản phẩm 
+            Danh sách sản phẩm
             <div class="actions">
                 <?= $this->render('_popup') ?>
             </div>
@@ -30,10 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="portlet-body">
                 <?php echo $this->render('_search', ['model' => $searchModel]); ?>
                 <div class="row">
-                <?php Pjax::begin([
-                        'id' => 'products',
-                    'options' => ['class' => 'w-100'],
-                ]) ?>
+                <?php Pjax::begin(['id' => 'products', 'options' => ['class' => 'w-100']]) ?>
                 <?= GridView::widget([
                     'tableOptions' => ['class' => 'table table-striped table-borderless table-hover'],
                     'dataProvider' => $dataProvider,
