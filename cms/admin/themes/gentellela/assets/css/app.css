@@ -48,7 +48,7 @@
 body {
   background: #f9f9f9;
   font-family: "Roboto", sans-serif;
-  color: #000; }
+  color: #444; }
 
 /* Modules */
 /*! fancyBox v2.1.5 fancyapps.com | fancyapps.com/fancybox/#license */
@@ -826,7 +826,7 @@ span.dynatree-node {
 
 /* Remove blue color and underline from title links */
 ul.dynatree-container a {
-  color: black;
+  color: #444;
   /* inherit doesn't work on IE */
   text-decoration: none;
   vertical-align: top;
@@ -1006,9 +1006,7 @@ span.dynatree-drop-target.dynatree-drop-reject {
     border-color: #2e73a5; }
 
 .btn-link {
-  color: #43a5ed; }
-  .btn-link:hover {
-    color: #2e73a5; }
+  color: #1b4460; }
 
 a {
   color: #43a5ed; }
@@ -1078,7 +1076,7 @@ a {
 .navbar {
   padding: 0;
   background-color: #fff !important;
-  box-shadow: 0 0 1px rgba(204, 204, 204, 0.1); }
+  box-shadow: 0 0 1px rgba(224, 224, 224, 0.7); }
   .navbar .container {
     padding: 0; }
   .navbar .navbar-brand {
@@ -1291,7 +1289,8 @@ h2 {
   letter-spacing: 1px;
   display: flex;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  color: #1b4460; }
 
 .portlet {
   background-color: #fff;
@@ -1309,7 +1308,7 @@ h2 {
       font-weight: normal;
       padding: 0 15px;
       margin: 0;
-      color: #43a5ed; }
+      color: #1b4460; }
     .portlet .portlet-title .actions {
       justify-items: flex-end; }
     .portlet .portlet-title [aria-expanded="false"] i:before {

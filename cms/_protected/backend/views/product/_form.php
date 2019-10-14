@@ -279,12 +279,9 @@ $this->registerJs("
 <div class="container-fluid">
     <div class="portlet">
         <div class="portlet-title">
-            <h4>Thẻ</h4>
-            <div class="actions">
-                <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productTags" aria-expanded="true"><i class="fa fa-compress"></i></button>
-            </div>
+            <h4>Metadata</h4>
         </div>
-        <div class="portlet-body collapse show" id="productTags">
+        <div class="portlet-body">
             <?php if($model->slug !== null) { ?>
                 <?= $form->field($model, 'slug')->textInput(['maxlength' => 128]) ?>
             <?php } ?>
@@ -304,11 +301,8 @@ $this->registerJs("
             <div class="portlet">
                 <div class="portlet-title">
                     <h4>Sản phẩm đã chọn</h4>
-                    <div class="actions">
-                        <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productTags" aria-expanded="true"><i class="fa fa-compress"></i></button>
-                    </div>
                 </div>
-                <div class="portlet-body collapse show related" id="productTags">
+                <div class="portlet-body related">
                     <ul class="connected list sortable grid">
                         <?php foreach ($products as $index => $item) {
                             $img = UtilHelper::getPicture($item->image, 'thumb-list', true);
@@ -326,11 +320,8 @@ $this->registerJs("
             <div class="portlet">
                 <div class="portlet-title">
                     <h4>Tất cả sản phẩm</h4>
-                    <div class="actions">
-                        <button type="button" class="btn btn-lg btn-link"  data-toggle="collapse" data-target="#productTags" aria-expanded="true"><i class="fa fa-compress"></i></button>
-                    </div>
                 </div>
-                <div class="portlet-body collapse show search" id="productTags">
+                <div class="portlet-body search">
                     <div class="search-box">
                         <input type="text" placeholder="Enter keyword" class="form-control" />
                     </div>

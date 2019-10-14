@@ -16,103 +16,106 @@ $this->title = 'Quản lý sản phẩm';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="product-index">
-
-    <h2>Danh sách sản phẩm <?= $this->render('_popup') ?></h2>
-    <div class="portlet">
-        <div class="portlet-title">
-            <h4>&nbsp;</h4>
+    <div class="container-fluid">
+        <h2>
+            Danh sách sản phẩm 
             <div class="actions">
-               <button type="button" class="btn btn-lg btn-link" data-toggle="collapse" data-target="#listProduct" aria-expanded="true"><i class="fa fa-compress"></i></button>
+                <?= $this->render('_popup') ?>
             </div>
-        </div>
-        <div class="portlet-body collapse show" id="listProduct">
-            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-            <div class="row">
-            <?php Pjax::begin([
-                    'id' => 'products',
-                'options' => ['class' => 'w-100'],
-            ]) ?>
-            <?= GridView::widget([
-                'tableOptions' => ['class' => 'table table-striped table-borderless table-hover'],
-                'dataProvider' => $dataProvider,
-                //'filterModel' => $searchModel,
-                'layout' => '{items}<div class="controls">{pager}{summary}</div>',
-                'pager' => [
-                        'class' => 'yii\bootstrap4\LinkPager',
-                ],
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
-                    [
-                        'attribute' => '#',
-                        'format' => 'html',
-                        'value' => function($data) {
-                            $img = UtilHelper::getPicture($data->image, 'thumb-list', true);
-                            return Html::a(Html::img($img, ['width'=>'100']), ['update', 'id' => $data->id]);
-                        }
+        </h2>
+        <div class="portlet">
+            <div class="portlet-title">
+                <h4></h4>
+            </div>
+            <div class="portlet-body">
+                <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+                <div class="row">
+                <?php Pjax::begin([
+                        'id' => 'products',
+                    'options' => ['class' => 'w-100'],
+                ]) ?>
+                <?= GridView::widget([
+                    'tableOptions' => ['class' => 'table table-striped table-borderless table-hover'],
+                    'dataProvider' => $dataProvider,
+                    //'filterModel' => $searchModel,
+                    'layout' => '{items}<div class="controls">{pager}{summary}</div>',
+                    'pager' => [
+                            'class' => 'yii\bootstrap4\LinkPager',
                     ],
-                    [
-                        'attribute'=>'name',
-                        'format'=>'html',
-                        'value'=> function($data) {
-                            return Html::a($data->name, ['update', 'id' => $data->id]);
-                        }
-                    ],
-                    [
-                        'attribute'=>'created_date',
-                        'format'=>['date', 'php: d/m/Y'],
-                    ],
-                    [
-                        'attribute' => 'status',
-                        'filter' => $searchModel->getStatusList(),
-                        'value' => function($data) {
-                            return $data->statusName;
-                        }
-                    ],
-                    [
-                        'header' => 'Hiển thị',
-                        'format' => 'raw',
-                        'value' => function($data) {
-                            return Html::a('', ['active', 'id' => $data->id],
-                                [
-                                    'class' => intval($data->activated) === 1 ? 'active fa fa-toggle-on' : 'active fa fa-toggle-off',
-                                    'title' => 'Publish',
-                                    'data' => [
-                                        'confirm' => "Are you sure you want to change state this category?",
-                                        'method'=>"post"
-                                    ]
-                                ]);
-                        }
-                    ],
-                    // buttons
-                    ['class' => 'yii\grid\ActionColumn',
-                        'header' => "Menu",
-                        'template' => '{preview} &nbsp; {update} &nbsp; {delete}',
-                        'buttons' => [
-                            'preview' => function ($url, $model, $key) {
-                                return Html::a(
-                                '',
-                                    '/san-pham/' . $model->slug . '.html',
-                                    ['title'=>'Preview', 'target' => '_blank', 'class'=>'fa fa-eye']
-                                );
-                            },
-                            'update' => function ($url, $model, $key) {
-                                return Html::a('', $url, ['title'=>'Manage product',
-                                    'class'=>'fa fa-pencil-square-o']);
-                            },
-                            'delete' => function ($url, $model, $key) {
-                                return Html::a('', $url,
-                                    ['title'=>'Delete product',
-                                        'class'=>'fa fa-trash-o',
+                    'columns' => [
+                        ['class' => 'yii\grid\SerialColumn'],
+                        [
+                            'attribute' => '#',
+                            'format' => 'html',
+                            'value' => function($data) {
+                                $img = UtilHelper::getPicture($data->image, 'thumb-list', true);
+                                return Html::a(Html::img($img, ['width'=>'100']), ['update', 'id' => $data->id]);
+                            }
+                        ],
+                        [
+                            'attribute'=>'name',
+                            'format'=>'html',
+                            'value'=> function($data) {
+                                return Html::a($data->name, ['update', 'id' => $data->id]);
+                            }
+                        ],
+                        [
+                            'attribute'=>'created_date',
+                            'format'=>['date', 'php: d/m/Y'],
+                        ],
+                        [
+                            'attribute' => 'status',
+                            'filter' => $searchModel->getStatusList(),
+                            'value' => function($data) {
+                                return $data->statusName;
+                            }
+                        ],
+                        [
+                            'header' => 'Hiển thị',
+                            'format' => 'raw',
+                            'value' => function($data) {
+                                return Html::a('', ['active', 'id' => $data->id],
+                                    [
+                                        'class' => intval($data->activated) === 1 ? 'active fa fa-toggle-on' : 'active fa fa-toggle-off',
+                                        'title' => 'Publish',
                                         'data' => [
-                                            'confirm' => Yii::t('app', 'Are you sure you want to delete this product?'),
-                                            'method' => 'post']
+                                            'confirm' => "Are you sure you want to change state this category?",
+                                            'method'=>"post"
+                                        ]
                                     ]);
                             }
-                        ]
-                    ], // ActionColumn
-                ],
-            ]); ?>
-            <?php Pjax::end() ?>
+                        ],
+                        // buttons
+                        ['class' => 'yii\grid\ActionColumn',
+                            'header' => "Menu",
+                            'template' => '{preview} &nbsp; {update} &nbsp; {delete}',
+                            'buttons' => [
+                                'preview' => function ($url, $model, $key) {
+                                    return Html::a(
+                                    '',
+                                        '/san-pham/' . $model->slug . '.html',
+                                        ['title'=>'Preview', 'target' => '_blank', 'class'=>'fa fa-eye']
+                                    );
+                                },
+                                'update' => function ($url, $model, $key) {
+                                    return Html::a('', $url, ['title'=>'Manage product',
+                                        'class'=>'fa fa-pencil-square-o']);
+                                },
+                                'delete' => function ($url, $model, $key) {
+                                    return Html::a('', $url,
+                                        ['title'=>'Delete product',
+                                            'class'=>'fa fa-trash-o',
+                                            'data' => [
+                                                'confirm' => Yii::t('app', 'Are you sure you want to delete this product?'),
+                                                'method' => 'post']
+                                        ]);
+                                }
+                            ]
+                        ], // ActionColumn
+                    ],
+                ]); ?>
+                <?php Pjax::end() ?>
+                </div>
             </div>
         </div>
     </div>

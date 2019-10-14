@@ -7,10 +7,11 @@
     }
 }
 .btn-link{
-    color: $color-primary;
-    &:hover{
-        color: $color-primary-hover;
-    }
+    color: $color-dark;
+    // &:hover{
+        // color: $color-primary-hover;
+        // background-color: rgba(0, 0, 0, 0.08);
+    // }
 }
 a{
     color: $color-primary;
