@@ -47,12 +47,12 @@ AssetsCallBack::register($this);
 $buttonOptions = [
     'id' => 'el-button-banner',
     'type' => 'button',
-    'class' => 'small round'
+    'class' => 'btn btn-primary'
 ];
 $buttonOptions2 = [
     'id' => 'el-button-slide',
     'type' => 'button',
-    'class' => 'small round'
+    'class' => 'btn btn-primary'
 ];
 $managerOptions = [
     'language' => 'vi',
@@ -100,18 +100,27 @@ $this->registerJs("
 
 ?>
 
-<div class="page-form row">
+<div class="page-form">
 
     <?php $form = ActiveForm::begin([
         'id' => 'action-form'
     ]); ?>
 
-    <div class="large-12 columns">
-        <div class="row">
-            <div class="large-8 columns">
-                <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
-                <?= $form->field($model, 'summary')->hiddenInput() ?>
-                <?= $form->field($model, 'content')->hiddenInput() ?>
+    <div class="container-fluid">
+        <div class="portlet">
+            <div class="portlet-title"></div>
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-8">
+                        <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
+                    </div>
+                    <div class="col-4">
+                        <?= $form->field($model, 'sorting') ?>
+                    </div>
+                </div>
+<!--                --><?//= $form->field($model, 'summary')->hiddenInput() ?>
+<!--                --><?//= $form->field($model, 'content')->hiddenInput() ?>
+
                 <div class="form-group">
                     <label class="control-label">Desktop</label>
                     <div class="banner-content">
@@ -136,30 +145,23 @@ $this->registerJs("
                     </div>
                 </div>
             </div>
-            <div class="large-4 columns">
-                <?= $form->field($model, 'sorting') ?>
-            </div>
         </div>
-        <div class="row">
-            <div class="large-12 columns">
-                <div class="action-buttons">
-                    <input type="hidden" name="type-submit" value="" />
-                    <?= Html::submitButton($model->status === Content::STATUS_DRAFT ? 'Hiển thị' : 'Cập nhật',
-                        [
-                            'class' => 'small button radius',
-                            'data' => ['submit' => 1]
-                        ]) ?>
-                    <?php if($model->status === null || $model->status === Content::STATUS_DRAFT) { ?>
-                        <?= Html::submitButton($model->id ? 'Cập nhật tạm' : 'Lưu tạm',
-                            [
-                                'class' => 'small button radius info',
-                                'data' => ['submit' => 0]
-                            ]) ?>
-                    <?php } ?>
-                    <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
-                </div>
-            </div>
-        </div>
+    </div>
+    <div class="action-buttons d-flex justify-content-end m-3">
+        <input type="hidden" name="type-submit" value="" />
+        <?= Html::submitButton($model->status === Content::STATUS_DRAFT ? 'Hiển thị' : 'Cập nhật',
+            [
+                'class' => 'btn btn-success mr-2',
+                'data' => ['submit' => 1]
+            ]) ?>
+        <?php if($model->status === null || $model->status === Content::STATUS_DRAFT) { ?>
+            <?= Html::submitButton($model->id ? 'Cập nhật tạm' : 'Lưu tạm',
+                [
+                    'class' => 'btn btn-primary mr-2',
+                    'data' => ['submit' => 0]
+                ]) ?>
+        <?php } ?>
+        <?= Html::a('Quay lại', ['index'], ['class' => 'btn btn-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

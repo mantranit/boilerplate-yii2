@@ -83,13 +83,11 @@ $this->registerJs("
         <div class="portlet">
             <div class="portlet-title"></div>
             <div class="portlet-body">
-                <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
-                <div class="form-group">
-                    <label class="control-label"><?= Yii::t('app', 'Link') ?></label>
-                    <input type="text" name="Content[content]" value="<?= $model->content ?>" class="form-control" />
-                </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
+                        <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
+                    </div>
+                    <div class="col-4">
                         <div class="form-group">
                             <label class="control-label">Vị trí</label>
                             <select name="Content[parent_id]" class="form-control">
@@ -99,11 +97,16 @@ $this->registerJs("
                             </select>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <?= $form->field($model, 'sorting')->textInput() ?>
                     </div>
                 </div>
-                <?= $form->field($model, 'summary')->hiddenInput() ?>
+
+                <div class="form-group">
+                    <label class="control-label"><?= Yii::t('app', 'Link') ?></label>
+                    <input type="text" name="Content[content]" value="<?= $model->content ?>" class="form-control" />
+                </div>
+<!--                --><?//= $form->field($model, 'summary')->hiddenInput() ?>
                 <div class="form-group">
                     <label class="control-label">Banner</label>
                     <div class="banner-content">

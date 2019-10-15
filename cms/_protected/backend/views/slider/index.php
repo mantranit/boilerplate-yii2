@@ -17,22 +17,25 @@ SystemAsset::register($this);
 
 ?>
 
-<article class="page-index">
-    <div class="portlet">
-        <div class="portlet-title">
-            <div class="caption"><?= Html::encode($this->title) ?></div>
-            <div class="action">
-                <ul class="button-group">
-                    <li><?= Html::a('Tạo mới', ['create'], ['class' => 'tiny button round', 'data' => ['reveal-id' => 'create']]) ?></li>
-                </ul>
-            </div>
+<article class="page-index container-fluid">
+    <h2>
+        <?= Html::encode($this->title) ?>
+        <div class="actions">
+            <?= $this->render('_popup') ?>
         </div>
-        <div class="portlet-body has-padding system" data-url="<?= Url::toRoute(['sorting']) ?>">
+    </h2>
+    <div class="portlet">
+        <div class="portlet-body p-0 pb-3 system" data-url="<?= Url::toRoute(['sorting']) ?>">
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
             <?php Pjax::begin(['id' => 'slider']) ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
+                'tableOptions' => ['class' => 'table table-striped table-borderless table-hover'],
+                'layout' => '{items}<div class="controls">{pager}{summary}</div>',
+                'pager' => [
+                    'class' => 'yii\bootstrap4\LinkPager',
+                ],
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
@@ -66,7 +69,7 @@ SystemAsset::register($this);
                     // buttons
                     ['class' => 'yii\grid\ActionColumn',
                         'header' => "Menu",
-                        'template' => '{update} {delete}',
+                        'template' => '{update} &nbsp; {delete}',
                         'buttons' => [
                             'update' => function ($url, $model, $key) {
                                 return Html::a('', $url, ['title'=>'Manage slide',
@@ -88,4 +91,3 @@ SystemAsset::register($this);
         </div>
     </div>
 </article>
-<?= $this->render('_popup') ?>
