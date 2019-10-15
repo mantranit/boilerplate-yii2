@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2047d75691b710a9fa6bec85cdb41469",
+    "content-hash": "e4d7485e382fefcd259da01e8cfece0e",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -622,6 +622,161 @@
             "time": "2019-07-09T06:55:48+00:00"
         },
         {
+            "name": "kartik-v/strength-meter",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/strength-meter.git",
+                "reference": "100147f588b12ff819014b445007a0decfd95fbb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/strength-meter/zipball/100147f588b12ff819014b445007a0decfd95fbb",
+                "reference": "100147f588b12ff819014b445007a0decfd95fbb",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\plugins\\strengthmeter\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A dynamic strength meter for password input validation with various configurable options.",
+            "homepage": "https://github.com/kartik-v/strength-meter",
+            "keywords": [
+                "bootstrap",
+                "jquery",
+                "meter",
+                "password",
+                "strength"
+            ],
+            "time": "2018-01-20T17:52:01+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-krajee-base",
+            "version": "v2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-krajee-base.git",
+                "reference": "9ddb662bdf49fdb671a90853912a40418a26a0dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/9ddb662bdf49fdb671a90853912a40418a26a0dd",
+                "reference": "9ddb662bdf49fdb671a90853912a40418a26a0dd",
+                "shasum": ""
+            },
+            "suggest": {
+                "yiisoft/yii2-bootstrap": "for Krajee extensions to work with Bootstrap 3.x version",
+                "yiisoft/yii2-bootstrap4": "for Krajee extensions to work with Bootstrap 4.x version"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\base\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Base library and foundation components for all Yii2 Krajee extensions.",
+            "homepage": "https://github.com/kartik-v/yii2-krajee-base",
+            "keywords": [
+                "base",
+                "extension",
+                "foundation",
+                "krajee",
+                "widget",
+                "yii2"
+            ],
+            "time": "2019-03-13T17:14:54+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-password",
+            "version": "v1.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-password.git",
+                "reference": "ba94ef669a350bf5cff2d9d2b6c1d771e288de96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-password/zipball/ba94ef669a350bf5cff2d9d2b6c1d771e288de96",
+                "reference": "ba94ef669a350bf5cff2d9d2b6c1d771e288de96",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/strength-meter": "~1.1",
+                "kartik-v/yii2-krajee-base": ">=1.9"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\password\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Useful password strength validation utilities for Yii Framework 2.0",
+            "homepage": "https://github.com/kartik-v/yii2-password",
+            "keywords": [
+                "auth",
+                "bootstrap",
+                "extension",
+                "form",
+                "input",
+                "jquery",
+                "password",
+                "strength",
+                "yii",
+                "yii2"
+            ],
+            "time": "2018-09-07T05:19:50+00:00"
+        },
+        {
             "name": "mihaildev/yii2-ckeditor",
             "version": "1.0.1",
             "source": {
@@ -723,152 +878,6 @@
                 "yii"
             ],
             "time": "2018-10-01T17:00:54+00:00"
-        },
-        {
-            "name": "nenad/yii2-password-strength",
-            "version": "2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nenad-zivkovic/yii2-password-strength.git",
-                "reference": "12b418a3db7db852bc3ef88358e3cf7fac7bfc96"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nenad-zivkovic/yii2-password-strength/zipball/12b418a3db7db852bc3ef88358e3cf7fac7bfc96",
-                "reference": "12b418a3db7db852bc3ef88358e3cf7fac7bfc96",
-                "shasum": ""
-            },
-            "require": {
-                "nenad/yii2-strength-meter": "*",
-                "nenad/yii2-widgets-base": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "nenad\\passwordStrength\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD 3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Kartik Visweswaran",
-                    "email": "kartikv2@gmail.com",
-                    "homepage": "http://www.krajee.com/"
-                },
-                {
-                    "name": "Nenad Zivkovic",
-                    "email": "contact@freetuts.org"
-                }
-            ],
-            "description": "Password strength validation utilities for Yii2 application templates created by Nenad Z.",
-            "homepage": "https://github.com/nenad-zivkovic/yii2-password-strength",
-            "keywords": [
-                "auth",
-                "bootstrap",
-                "extension",
-                "form",
-                "input",
-                "jquery",
-                "password",
-                "strength",
-                "yii",
-                "yii2"
-            ],
-            "time": "2015-01-04T15:23:56+00:00"
-        },
-        {
-            "name": "nenad/yii2-strength-meter",
-            "version": "2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nenad-zivkovic/yii2-strength-meter.git",
-                "reference": "01c8290319a96ab8f5722f188836cc70f0afb843"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nenad-zivkovic/yii2-strength-meter/zipball/01c8290319a96ab8f5722f188836cc70f0afb843",
-                "reference": "01c8290319a96ab8f5722f188836cc70f0afb843",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "nenad\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD 3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Kartik Visweswaran",
-                    "email": "kartikv2@gmail.com",
-                    "homepage": "http://www.krajee.com/"
-                },
-                {
-                    "name": "Nenad Zivkovic",
-                    "email": "contact@freetuts.org"
-                }
-            ],
-            "description": "A dynamic strength meter for password input validation with various configurable options.",
-            "homepage": "https://github.com/nenad-zivkovic/yii2-strength-meter",
-            "keywords": [
-                "bootstrap",
-                "jquery",
-                "meter",
-                "password",
-                "strength"
-            ],
-            "time": "2015-01-04T15:20:38+00:00"
-        },
-        {
-            "name": "nenad/yii2-widgets-base",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nenad-zivkovic/yii2-widgets-base.git",
-                "reference": "d01553275cd440dc9e486fe1371949dba06da10e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nenad-zivkovic/yii2-widgets-base/zipball/d01553275cd440dc9e486fe1371949dba06da10e",
-                "reference": "d01553275cd440dc9e486fe1371949dba06da10e",
-                "shasum": ""
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "nenad\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD 3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Kartik Visweswaran",
-                    "email": "kartikv2@gmail.com",
-                    "homepage": "http://www.krajee.com/"
-                },
-                {
-                    "name": "Nenad Zivkovic",
-                    "email": "contact@freetuts.org"
-                }
-            ],
-            "description": "Base classes and widgets for Yii2 application templates created by Nenad Z.",
-            "homepage": "https://github.com/nenad-zivkovic/yii2-widgets-base",
-            "keywords": [
-                "extension",
-                "form",
-                "widget",
-                "yii2"
-            ],
-            "time": "2014-11-19T17:33:46+00:00"
         },
         {
             "name": "npm-asset/bootstrap",

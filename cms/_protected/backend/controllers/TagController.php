@@ -47,19 +47,13 @@ class TagController extends BackendController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($name = '[tag]')
     {
         $model = new Tag();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->slug = $model->getSlug(SlugHelper::makeSlugs($model->name));
-            if($model->save()) {
-                return $this->redirect(['index']);
-            }
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        $model->name = $name;
+        $model->slug = $model->getSlug(SlugHelper::makeSlugs($name));
+        if($model->save()) {
+            return $this->redirect(['index']);
         }
     }
 
