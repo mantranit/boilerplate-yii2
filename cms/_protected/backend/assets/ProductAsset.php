@@ -40,12 +40,12 @@ class ProductAsset extends AssetBundle
         'js/vendor/jquery.maskMoney.min.js',
         'js/vendor/jquery.fancybox.pack.js',
         // 'js/global.min.js',
+        'js/general/action-button.js',
+        'js/general/sortable.js',
         'js/app/currency.js',
         'js/app/dynatree.js',
         'js/app/tag.js',
         'js/app/upload.js',
-        'js/general/action-button.js',
-        'js/general/sortable.js',
     ];
 
     public $depends = [

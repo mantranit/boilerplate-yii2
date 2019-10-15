@@ -9,7 +9,6 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Quản lý Tag';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="tag-index">
     <div class="portlet">

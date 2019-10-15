@@ -521,18 +521,15 @@ h1, h2, h3, h4, h5, h6 {
     display: table; }
 
 .site-index .related .connected {
-  height: 800px;
-  max-height: 800px; }
+  height: 676px; }
 
 .site-index .search .connected {
-  height: 645px;
-  max-height: 645px; }
+  height: 580px; }
 
 .related .connected {
   height: 391px;
-  max-height: 391px;
   overflow-x: hidden;
-  overflow-y: scroll; }
+  overflow-y: auto; }
   .related .connected li {
     cursor: move; }
     .related .connected li.sortable-placeholder {
@@ -555,9 +552,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .search .connected {
   height: 300px;
-  max-height: 300px;
   overflow-x: hidden;
-  overflow-y: scroll; }
+  overflow-y: auto; }
   .search .connected li {
     cursor: move; }
     .search .connected li.sortable-placeholder {

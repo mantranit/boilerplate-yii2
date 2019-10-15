@@ -5,23 +5,20 @@
     }
     .related {
         .connected {
-            height: 800px;
-            max-height: 800px;
+            height: 676px;
         }
     }
     .search {
         .connected {
-            height: 645px;
-            max-height: 645px;
+            height: 580px;
         }
     }
 }
 .related {
     .connected {
         height: 391px;
-        max-height: 391px;
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: auto;
         li{
             cursor: move;
             &.sortable-placeholder {
@@ -50,9 +47,8 @@
     }
     .connected {
         height: 300px;
-        max-height: 300px;
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: auto;
         li{
             cursor: move;
             &.sortable-placeholder {

@@ -28,7 +28,8 @@ class WatermaskAsset extends AssetBundle
     ];
     public $js = [
         'js/vendor/fabric.min.js',
-        'js/watermask.min.js'
+//        'js/watermask.min.js',
+        'js/watermask/watermask.js',
     ];
 
     public $depends = [
