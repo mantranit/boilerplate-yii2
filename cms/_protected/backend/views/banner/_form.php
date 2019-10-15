@@ -45,7 +45,7 @@ AssetsCallBack::register($this);
 $buttonOptions = [
     'id' => 'el-button-banner',
     'type' => 'button',
-    'class' => 'small round'
+    'class' => 'btn btn-primary'
 ];
 $managerOptions = [
     'language' => 'vi',
@@ -73,60 +73,69 @@ $this->registerJs("
 
 ?>
 
-<div class="page-form row">
+<div class="page-form">
 
     <?php $form = ActiveForm::begin([
         'id' => 'action-form'
     ]); ?>
 
-    <div class="large-8 columns">
-        <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
-        <?= $form->field($model, 'summary')->hiddenInput() ?>
-        <div class="form-group">
-            <label class="control-label">Banner</label>
-            <div class="banner-content">
-                <span class="image">
-                    <?php if($model->updated_date > 0) { ?>
-                        <img src="<?= $model->summary ?>" alt="" />
-                    <?php } ?>
-                </span>
-                <?= Html::button('Chọn', $buttonOptions);?>
+    <div class="container-fluid">
+        <div class="portlet">
+            <div class="portlet-title"></div>
+            <div class="portlet-body">
+                <?= $form->field($model, 'name')->textInput(['maxlength' => 256]) ?>
+                <div class="form-group">
+                    <label class="control-label"><?= Yii::t('app', 'Link') ?></label>
+                    <input type="text" name="Content[content]" value="<?= $model->content ?>" class="form-control" />
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="control-label">Vị trí</label>
+                            <select name="Content[parent_id]" class="form-control">
+                                <option value="0" <?php if($model->parent_id === 0) { echo 'selected="selected"'; } ?>>Scroll trái</option>
+                                <option value="1" <?php if($model->parent_id === 1) { echo 'selected="selected"'; } ?>>Scroll phải</option>
+                                <option value="2" <?php if($model->parent_id === 2) { echo 'selected="selected"'; } ?>>Cột trái</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <?= $form->field($model, 'sorting')->textInput() ?>
+                    </div>
+                </div>
+                <?= $form->field($model, 'summary')->hiddenInput() ?>
+                <div class="form-group">
+                    <label class="control-label">Banner</label>
+                    <div class="banner-content">
+                        <span class="image">
+                            <?php if($model->updated_date > 0) { ?>
+                                <img src="<?= $model->summary ?>" alt="" />
+                            <?php } ?>
+                        </span>
+                        <?= Html::button('Chọn', $buttonOptions);?>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label"><?= Yii::t('app', 'Link') ?></label>
-            <input type="text" name="Content[content]" value="<?= $model->content ?>" />
-        </div>
+
     </div>
-    <div class="large-4 columns">
-        <?= $form->field($model, 'sorting')->textInput() ?>
-        <div class="form-group">
-            <label class="control-label">Vị trí</label>
-            <select name="Content[parent_id]">
-                <option value="0" <?php if($model->parent_id === 0) { echo 'selected="selected"'; } ?>>Scroll trái</option>
-                <option value="1" <?php if($model->parent_id === 1) { echo 'selected="selected"'; } ?>>Scroll phải</option>
-                <option value="2" <?php if($model->parent_id === 2) { echo 'selected="selected"'; } ?>>Cột trái</option>
-            </select>
-        </div>
+
+    <div class="action-buttons d-flex justify-content-end m-3">
+        <input type="hidden" name="type-submit" value="" />
+        <?= Html::submitButton($model->status === Content::STATUS_DRAFT ? 'Hiển thị' : 'Cập nhật',
+            [
+                'class' => 'btn btn-success mr-2',
+                'data' => ['submit' => 1]
+            ]) ?>
+        <?php if($model->status === null || $model->status === Content::STATUS_DRAFT) { ?>
+            <?= Html::submitButton($model->id ? 'Cập nhật tạm' : 'Lưu tạm',
+                [
+                    'class' => 'btn btn-primary mr-2',
+                    'data' => ['submit' => 0]
+                ]) ?>
+        <?php } ?>
+        <?= Html::a('Quay lại', ['index'], ['class' => 'btn btn-secondary']) ?>
     </div>
-        <div class="large-12 columns">
-            <div class="action-buttons">
-                <input type="hidden" name="type-submit" value="" />
-                <?= Html::submitButton($model->status === Content::STATUS_DRAFT ? 'Hiển thị' : 'Cập nhật',
-                    [
-                        'class' => 'small button radius',
-                        'data' => ['submit' => 1]
-                    ]) ?>
-                <?php if($model->status === null || $model->status === Content::STATUS_DRAFT) { ?>
-                    <?= Html::submitButton($model->id ? 'Cập nhật tạm' : 'Lưu tạm',
-                        [
-                            'class' => 'small button radius info',
-                            'data' => ['submit' => 0]
-                        ]) ?>
-                <?php } ?>
-                <?= Html::a('Bỏ qua', ['index'], ['class' => 'small button secondary radius']) ?>
-            </div>
-        </div>
     <?php ActiveForm::end(); ?>
 
 </div>

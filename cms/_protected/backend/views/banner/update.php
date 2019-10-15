@@ -11,25 +11,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <article class="page-update">
-
-    <div class="portlet">
-        <div class="portlet-title">
-            <div class="caption"><?= Html::encode($this->title) ?></div>
-            <div class="action">
-                <ul class="button-group">
-                    <li><?= Html::a('Quay lại', ['index'], ['class' => 'tiny button round secondary']) ?></li>
-                    <li><?= Html::a('Thêm mới', ['create'], ['class' => 'tiny button round secondary', 'data' => ['reveal-id' => 'create']]) ?></li>
-                </ul>
+    <div class="container-fluid">
+        <h2>
+            <?= Html::encode($this->title) ?>
+            <div class="actions">
+                <?= $this->render('_popup') ?>
             </div>
-        </div>
-        <div class="portlet-body">
-
-            <?= $this->render('_form', [
-                'model' => $model,
-                'pictures' => $pictures,
-            ]) ?>
-
-        </div>
+        </h2>
     </div>
+    <?= $this->render('_form', [
+        'model' => $model,
+        'pictures' => $pictures,
+    ]) ?>
+
 </article>
-<?= $this->render('_popup') ?>
+

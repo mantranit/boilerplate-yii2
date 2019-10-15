@@ -7,21 +7,24 @@
  */
 
 use yii\helpers\Url;
+use yii\bootstrap4\Modal;
 
 ?>
-
-<div id="create" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <div class="modal-content">
-        <form action="<?= Url::toRoute(['create']) ?>">
-            <div class="form-group">
-                <label>Tiêu đề</label>
-                <input type="text" name="name" />
-            </div>
-            <div class="action-buttons">
-                <button class="small radius">Tạo mới</button>
-            </div>
-        </form>
+<?php
+Modal::begin([
+    'title' => 'Thêm mới',
+    'toggleButton' => [
+        'label' => '<i class="fa fa-plus"></i>',
+        'class' => 'btn btn-lg btn-link'
+    ],
+]);
+?>
+<form action="<?= Url::toRoute(['create']) ?>">
+    <div class="form-group">
+        <input type="text" name="name" class="form-control" placeholder="Tiêu đề" />
     </div>
-    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</div>
-
+    <div class="action-buttons">
+        <button class="btn btn-success">Tạo mới</button>
+    </div>
+</form>
+<?php Modal::end(); ?>
